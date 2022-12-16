@@ -1,0 +1,7 @@
+{
+  "name": "Zenith",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
