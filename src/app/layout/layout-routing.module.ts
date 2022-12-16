@@ -9,10 +9,6 @@ const routes: Routes = [
     component: LayoutPage
   },
   {
-    path: 'create-post',
-    loadChildren: () => import('./create-post/create-post.module').then( m => m.CreatePostPageModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
