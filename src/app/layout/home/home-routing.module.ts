@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
+  },
+  {
+    path: 'create-post',
+    loadChildren: () => import('./create-post/create-post.module').then( m => m.CreatePostPageModule)
+  },
+  {
+    path: 'view-post',
+    loadChildren: () => import('./view-post/view-post.module').then( m => m.ViewPostPageModule)
   }
 ];
 
