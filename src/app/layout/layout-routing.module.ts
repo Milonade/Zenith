@@ -9,14 +9,6 @@ const routes: Routes = [
     component: LayoutPage
   },
   {
-    path: 'home-map',
-    loadChildren: () => import('./home-map/home-map.module').then( m => m.HomeMapPageModule)
-  },
-  {
-    path: 'home-feed',
-    loadChildren: () => import('./home-feed/home-feed.module').then( m => m.HomeFeedPageModule)
-  },
-  {
     path: 'create-post',
     loadChildren: () => import('./create-post/create-post.module').then( m => m.CreatePostPageModule)
   },
