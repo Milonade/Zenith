@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage-angular";
+import { NgAisModule } from 'angular-instantsearch';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +18,7 @@ import { IonicStorageModule } from "@ionic/storage-angular";
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    NgAisModule.forRoot(),
   ],
   providers: [
     {
