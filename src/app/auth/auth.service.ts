@@ -3,13 +3,12 @@ import { Injectable } from "@angular/core";
 import { ReplaySubject, Observable, from, delayWhen } from "rxjs";
 import { map } from "rxjs/operators";
 import { Storage } from "@ionic/storage";
-import { environment } from "../../environments/environment";
 
 import { AuthResponse } from "../models/auth-response";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 
-const API_URL = environment.apiUrl;
+const API_URL = "https://zenith.onrender.com";
 
 /**
  * Authentication service for login/logout.
