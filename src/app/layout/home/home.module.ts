@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import { SearchBarComponent } from 'src/app/components/search-bar/search-bar.component';
+import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 
 @NgModule({
   imports: [
