@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        redirectTo: "account", // Or whatever tabs is your default one
+        redirectTo: "home", // Or whatever tabs is your default one
         pathMatch: "full",
       },
       {
