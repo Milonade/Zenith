@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ReplaySubject, Observable } from "rxjs";
+import { ReplaySubject, Observable, from, delayWhen } from "rxjs";
 import { map } from "rxjs/operators";
+import { Storage } from "@ionic/storage";
 
 import { AuthResponse } from "../models/auth-response";
 import { User } from "../models/user";
@@ -16,10 +17,12 @@ const API_URL = "https://zenith.onrender.com";
 export class AuthService {
   #auth$: ReplaySubject<AuthResponse | undefined>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: Storage) {
     this.#auth$ = new ReplaySubject(1);
-    // Emit an empty value on startup for now
-    this.#auth$.next(); // erreur normale, va être remplacé plus tard dans le guide
+    this.storage.get('auth').then((auth) => {
+      // Emit the loaded value into the observable stream.
+      this.#auth$.next(auth);
+    });
   }
 
   isAuthenticated$(): Observable<boolean> {
@@ -35,9 +38,12 @@ export class AuthService {
   }
 
   logIn$(authRequest: AuthRequest): Observable<User> {
-    const authUrl = `${API_URL}/auth`;
+
+    const authUrl = `${API_URL}/login`;
     return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
-      map((auth) => {
+      // Delay the observable stream while persisting the authentication response.
+      delayWhen((auth) => this.saveAuth$(auth)),
+      map(auth => {
         this.#auth$.next(auth);
         console.log(`User ${auth.user.username} logged in`);
         return auth.user;
@@ -45,8 +51,14 @@ export class AuthService {
     );
   }
 
-  logOut(): void {
+  private saveAuth$(auth: AuthResponse): Observable<void> {
+    return from(this.storage.set('auth', auth));
+  }
+
+  logOut() {
     this.#auth$.next(null);
-    console.log("User logged out");
+    // Remove the stored authentication from storage when logging out.
+    this.storage.remove('auth');
+    console.log('User logged out');
   }
 }
