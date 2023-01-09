@@ -9,12 +9,12 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 
 
 @NgModule({
-  declarations: [SearchBarComponent, HeaderComponent],
+  declarations: [SearchBarComponent],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule
   ],
-  exports: [CommonModule, IonicModule, FormsModule, SearchBarComponent, HeaderComponent]
+  exports: [CommonModule, IonicModule, FormsModule, SearchBarComponent]
 })
 export class SharedModule { }

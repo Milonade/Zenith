@@ -8,6 +8,7 @@ import { LayoutPageRoutingModule } from './layout-routing.module';
 
 import { LayoutPage } from './layout.page';
 import { SharedModule } from '../shared/shared.module';
+import { HeaderComponent } from '../shared/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
     LayoutPageRoutingModule,
     SharedModule
   ],
-  declarations: [LayoutPage]
+  declarations: [
+    LayoutPage,
+    HeaderComponent
+  ]
 })
 export class LayoutPageModule {}
