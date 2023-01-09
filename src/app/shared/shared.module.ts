@@ -3,18 +3,17 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
 
 
 @NgModule({
-  declarations: [SearchBarComponent, HeaderComponent],
+  declarations: [ HeaderComponent],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule
   ],
-  exports: [CommonModule, IonicModule, FormsModule, SearchBarComponent, HeaderComponent]
+  exports: [CommonModule, IonicModule, FormsModule, HeaderComponent]
 })
 export class SharedModule { }
