@@ -29,6 +29,9 @@ ion-button {
     --background: var(--ion-color-secondary);
 }
 
-ion-item {
+ion-item.form-input {
     --border-color: var(--ion-color-tertiary);
+    --highlight-color-valid: var(--ion-color-tertiary);
+    --highlight-color-invalid: var(--ion-color-tertiary);
+    --highlight-color-focused: var(--ion-color-tertiary);
 }
