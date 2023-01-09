@@ -24,8 +24,6 @@ const routes: Routes = [
     redirectTo: "home", // Or whatever tabs is your default one
     pathMatch: "full",
   }
-
-
 ];
 
 @NgModule({
