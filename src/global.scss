@@ -25,9 +25,10 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-/** Colors */
-$purple: #220561;
-$orange: #FF6433;
-$lila: #9770EB;
-$cream: #EFD7BD;
-$white: #FDFAF6;
+ion-button {
+    --background: var(--ion-color-secondary);
+}
+
+ion-item {
+    --border-color: var(--ion-color-tertiary);
+}

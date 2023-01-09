@@ -1,22 +1,22 @@
 <ion-content>
-  <ion-title>Login</ion-title>
+  <ion-title class="ion-padding" color="tertiary">Login</ion-title>
   <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
     <ion-list>
       <!-- Username input -->
-      <ion-item>
-        <ion-label position="floating">Username</ion-label>
+      <ion-item class="form-input">
+        <ion-label>Email:</ion-label>
         <ion-input inputmode="text" #username="ngModel" required="true" name="username"
           [(ngModel)]="authRequest.username"></ion-input>
       </ion-item>
 
       <!-- Error message displayed if the username is invalid -->
       <ion-item lines="none" *ngIf="username.invalid && username.touched">
-        <ion-text color="danger">Username is required.</ion-text>
+        <ion-text color="danger">Email is required.</ion-text>
       </ion-item>
 
       <!-- Password input -->
-      <ion-item>
-        <ion-label position="floating">Password</ion-label>
+      <ion-item class="form-input">
+        <ion-label>Password:</ion-label>
         <ion-input inputmode="text" #password="ngModel" required="true" type="password" name="password"
           [(ngModel)]="authRequest.password"></ion-input>
       </ion-item>

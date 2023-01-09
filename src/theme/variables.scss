@@ -2,6 +2,11 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+@font-face {
+	font-family: "KTPojekt";
+	src: local("KT-Projekt"), url("../assets/fonts/kt_projekt/TYPE/KT-Projekt-Regular.otf") format("opentype");
+}
+
 :root {
 	--ion-color-primary: #220561;
 	--ion-color-primary-rgb: 34,5,97;
@@ -12,7 +17,7 @@
 
 	--ion-color-secondary: #FF6433;
 	--ion-color-secondary-rgb: 255,100,51;
-	--ion-color-secondary-contrast: #000000;
+	--ion-color-secondary-contrast: #ffffff;
 	--ion-color-secondary-contrast-rgb: 0,0,0;
 	--ion-color-secondary-shade: #e0582d;
 	--ion-color-secondary-tint: #ff7447;
@@ -59,8 +64,9 @@
 	--ion-color-light-shade: #dfdcd8;
 	--ion-color-light-tint: #fdfbf7;
 
+	--ion-font-family: "KTPojekt";
+	--ion-text-color: var(--ion-color-primary);
 }
-
 // @media (prefers-color-scheme: dark) {
 //   /*
 //    * Dark Colors
