@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SearchBarComponent } from './search-bar.component';
+import { PostSliderComponent } from './post-slider.component';
 
-describe('SearchBarComponent', () => {
-  let component: SearchBarComponent;
-  let fixture: ComponentFixture<SearchBarComponent>;
+describe('PostSliderComponent', () => {
+  let component: PostSliderComponent;
+  let fixture: ComponentFixture<PostSliderComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchBarComponent ],
+      declarations: [ PostSliderComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SearchBarComponent);
+    fixture = TestBed.createComponent(PostSliderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

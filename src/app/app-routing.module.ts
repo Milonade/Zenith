@@ -3,17 +3,27 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from "./auth/auth.guard";
 
 const routes: Routes = [
- {
-    path: "",
-    // Add the guard to the canActivate array of this route
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import("./layout/layout.module").then((m) => m.LayoutPageModule),
-  },
   {
     path: 'login',
-    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule)
   },
+  {
+    // Route that loads the home module
+    path: 'home',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    // Route that loads the account module
+    path: 'account',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./account/account.module').then(m => m.AccountPageModule)
+  },
+  {
+    path: "",
+    redirectTo: "home", // Or whatever tabs is your default one
+    pathMatch: "full",
+  }
 
 
 ];
