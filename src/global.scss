@@ -39,3 +39,8 @@ ion-item.form-input {
 .modal {
     --border-radius: 5rem;
 }
+
+ion-modal {
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+  }

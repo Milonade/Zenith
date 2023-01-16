@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post';
+import { PostService } from 'src/app/service/posts.service';
 
 @Component({
   selector: 'app-post-slider',
@@ -6,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-slider.component.scss'],
 })
 export class PostSliderComponent implements OnInit {
+  //open and close modal
   isModalOpen = true;
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
-  constructor() { }
 
-  ngOnInit() { }
+  posts:Post[];
+  constructor(private postService: PostService) { }
 
+  ngOnInit() {
+    this.postService.getPosts().subscribe(data => {
+      this.posts = data;
+    });
+  }
 }
