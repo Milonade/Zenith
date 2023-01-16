@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
+
 export class PostComponent implements OnInit {
-  constructor(private http: HttpClientModule) { }
+ @Input() post: Post;
+  constructor() { }
 
-  getPosts(): Observable<any> {
-    return this.http.get<any>('https://your-api-endpoint.com/posts');
-  }
-
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

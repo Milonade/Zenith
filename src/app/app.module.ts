@@ -4,9 +4,10 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { NgAisModule } from 'angular-instantsearch';
+import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 
 
 
@@ -25,8 +26,13 @@ import { NgAisModule } from 'angular-instantsearch';
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
     }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

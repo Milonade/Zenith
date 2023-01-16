@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PostSliderComponent } from 'src/app/components/post-slider/post-slider.component';
+import { PostComponent } from 'src/app/components/post/post.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { PostSliderComponent } from 'src/app/components/post-slider/post-slider.
     HomePageRoutingModule,
     SharedModule
   ],
-  declarations: [HomePage, PostSliderComponent],
+  declarations: [HomePage, PostSliderComponent, PostComponent],
 
 })
 export class HomePageModule {}

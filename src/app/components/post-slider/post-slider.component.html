@@ -2,9 +2,10 @@
   [backdropDismiss]="false">
   <ng-template>
     <ion-content>
-      <app-post *ngFor="let post of posts" [username]="post.username" [location]="post.location"
-        [picture]="post.picture" [description]="post.description"></app-post>
-      <div> <ion-button id="mapBtn" (click)="modal.setCurrentBreakpoint(0.1)">Map</ion-button></div>
+      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+      <div>
+        <ion-button id="mapBtn" (click)="modal.setCurrentBreakpoint(0.1)">Map</ion-button>
+      </div>
     </ion-content>
   </ng-template>
 </ion-modal>

@@ -1,10 +1,10 @@
 <ion-card>
   <ion-card-header>
-    {{username}}
+    {{post.userId}}
+    <p>{{post.location}}</p>
   </ion-card-header>
   <ion-card-content>
-    <ion-img [src]="picture"></ion-img>
-    <p>{{location}}</p>
-    <p>{{description}}</p>
+    <ion-img>{{post.picture}}</ion-img>
+    <p>{{post.description}}</p>
   </ion-card-content>
 </ion-card>
