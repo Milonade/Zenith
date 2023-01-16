@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-title class="ion-padding" color="tertiary">Login</ion-title>
+  <ion-title class="ion-padding" color="tertiary">Register</ion-title>
   <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
     <ion-list>
       <!-- Username input -->
@@ -28,11 +28,11 @@
     </ion-list>
     <div class="ion-padding">
       <!-- Submit button -->
-      <ion-button type="submit" expand="block" [disabled]="loginForm.invalid" class="prim-btn">Log in</ion-button>
+      <ion-button type="submit" expand="block" [disabled]="loginForm.invalid" class="prim-btn">Sign up</ion-button>
 
       <!-- Error message displayed if the login failed -->
-      <ion-text color="danger" *ngIf="loginError">Username or password is invalid.</ion-text>
+      <ion-text color="danger" *ngIf="registerError">Username or password is invalid.</ion-text>
     </div>
   </form>
-  <ion-button routerLink="../register" fill="clear" class="ion-padding-horizontal">No account yet? Sign up.</ion-button>
+  <ion-button routerLink="../login" fill="clear" class="ion-padding-horizontal">Already have an account? Sign in.</ion-button>
 </ion-content>

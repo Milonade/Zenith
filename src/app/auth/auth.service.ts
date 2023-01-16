@@ -60,4 +60,10 @@ export class AuthService {
     this.storage.remove('auth');
     console.log('User logged out');
   }
+
+  register$(authRequest: AuthRequest): Observable<Object> {
+    const authUrl = `${API_URL}/users`;
+    return this.http.post(authUrl, authRequest)
+  }
+
 }
