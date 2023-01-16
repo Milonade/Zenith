@@ -1,38 +1,46 @@
 <ion-content>
   <ion-title class="ion-padding" color="tertiary">Register</ion-title>
-  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+  <form #registerForm="ngForm" (submit)="onSubmit(registerForm)">
     <ion-list>
       <!-- Username input -->
       <ion-item class="form-input">
-        <ion-label>Email:</ion-label>
-        <ion-input inputmode="text" #username="ngModel" required="true" name="username"
+        <ion-label>Username:</ion-label>
+        <ion-input inputmode="text" #username="ngModel" required name="username" minlength="3" maxlength="16"
           [(ngModel)]="authRequest.username"></ion-input>
       </ion-item>
-  
+
       <!-- Error message displayed if the username is invalid -->
-      <ion-item lines="none" *ngIf="username.invalid && username.touched">
-        <ion-text color="danger">Email is required.</ion-text>
+      <ion-item lines="none" *ngIf="username.errors?.['required'] && (username.dirty || username.touched)">
+        <ion-text color="danger">Username is required.</ion-text>
       </ion-item>
-  
+      <ion-item lines="none" *ngIf="username.errors?.['minlength']">
+        <ion-text color="danger">Username must contain 3 characters minimum.</ion-text>
+      </ion-item>
+      <ion-item lines="none" *ngIf="username.errors?.['maxlength']">
+        <ion-text color="danger">Username must contain 16 characters maximum.</ion-text>
+      </ion-item>
+
       <!-- Password input -->
       <ion-item class="form-input">
         <ion-label>Password:</ion-label>
-        <ion-input inputmode="text" #password="ngModel" required="true" type="password" name="password"
+        <ion-input inputmode="text" #password="ngModel" required type="password" name="password"
           [(ngModel)]="authRequest.password"></ion-input>
       </ion-item>
-  
+
       <!-- Error message displayed if the password is invalid -->
-      <ion-item lines="none" *ngIf="password.invalid && password.touched">
+      <ion-item lines="none" *ngIf="password.errors?.['required'] && (password.dirty || password.touched)">
         <ion-text color="danger">Password is required.</ion-text>
       </ion-item>
     </ion-list>
     <div class="ion-padding">
       <!-- Submit button -->
-      <ion-button type="submit" expand="block" [disabled]="loginForm.invalid" class="prim-btn">Sign up</ion-button>
+      <ion-button type="submit" expand="block" [disabled]="registerForm.invalid" class="prim-btn">Sign up</ion-button>
 
-      <!-- Error message displayed if the login failed -->
-      <ion-text color="danger" *ngIf="registerError">Username or password is invalid.</ion-text>
+      <!-- Error message displayed if the registration failed -->
+      <ion-text color="danger" *ngIf="registerError">Registration failed. Please try again.</ion-text>
+      <ion-text color="danger" *ngIf="uniqueError">Username already exists.</ion-text>
     </div>
   </form>
-  <ion-button routerLink="../login" fill="clear" class="ion-padding-horizontal">Already have an account? Sign in.</ion-button>
+  <ion-button routerLink="../login" fill="clear" class="ion-margin-horizontal">Already have an account? Sign
+    in.</ion-button>
 </ion-content>

@@ -35,3 +35,7 @@ ion-item.form-input {
     --highlight-color-invalid: var(--ion-color-tertiary);
     --highlight-color-focused: var(--ion-color-tertiary);
 }
+
+.modal {
+    --border-radius: 5rem;
+}

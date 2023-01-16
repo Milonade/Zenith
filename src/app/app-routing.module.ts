@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     // Route that loads the home module
-    path: 'home',
+    path: '',
     canActivate: [AuthGuard],
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },

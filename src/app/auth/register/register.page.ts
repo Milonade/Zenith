@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../auth.service";
 import { AuthRequest } from "../../models/auth-request";
 import { ModalController } from '@ionic/angular';
+import { SuccessModalComponent } from '../components/success-modal/success-modal.component';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ export class RegisterPage implements OnInit {
   authRequest: AuthRequest;
 
   registerError: boolean;
+  uniqueError: boolean;
 
   constructor(private auth: AuthService, private router: Router, private modalCtrl: ModalController) {
     this.authRequest = {
@@ -35,26 +37,31 @@ export class RegisterPage implements OnInit {
 
     // Hide any previous register error.
     this.registerError = false;
+    this.uniqueError = false;
 
     // Perform the authentication request to the API.
     this.auth.register$(this.authRequest).subscribe({
       next: () => {
-
+        this.openModal()
       },
       error: (err) => {
-        this.registerError = true;
+        err.error.includes("duplicate key") ?
+          this.uniqueError = true :
+          this.registerError = true
+
+        // On n'a pas plus d'indication pour l'erreur depuis le back :(
         console.warn(`Registration failed: ${err.message}`);
       },
     });
   }
 
-  // async openModal() {
-  //   const modal = await this.modalCtrl.create({
-  //     // component: Modal,
-  //   });
-  //   modal.present();
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: SuccessModalComponent,
+    });
+    modal.present();
 
-  // }
+  }
 
   ngOnInit() {
   }
