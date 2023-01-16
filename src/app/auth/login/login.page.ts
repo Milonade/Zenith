@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "../auth.service";
 import { AuthRequest } from "../../models/auth-request";
+import { RegisterPage } from '../register/register.page';
 
 @Component({
   // selector: 'app-login',
@@ -23,6 +24,8 @@ export class LoginPage {
    * (probably because the name or password is incorrect).
    */
   loginError: boolean;
+
+  registerPage = RegisterPage;
 
   constructor(private auth: AuthService, private router: Router) {
     this.authRequest = {

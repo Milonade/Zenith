@@ -20,10 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.module').then(m => m.AccountPageModule)
   },
   {
-    path: "",
-    redirectTo: "home", // Or whatever tabs is your default one
-    pathMatch: "full",
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   }
+
 ];
 
 @NgModule({
