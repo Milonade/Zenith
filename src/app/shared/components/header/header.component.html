@@ -1,8 +1,9 @@
 <ion-toolbar>
   <ion-buttons slot="start">
-    <ion-button>
-      <ng-content></ng-content>
+    <ion-button (click)="showSearchBar()">
+      <ion-icon *ngIf="!showSearch" name="search"></ion-icon>
     </ion-button>
+    <ion-searchbar *ngIf="showSearch" (ionInput)="filterItems($event)" debounce="200" placeholder="What are you looking for?"></ion-searchbar>
   </ion-buttons>
 
   <ion-title>
