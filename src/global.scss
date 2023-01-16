@@ -35,3 +35,8 @@ ion-item.form-input {
     --highlight-color-invalid: var(--ion-color-tertiary);
     --highlight-color-focused: var(--ion-color-tertiary);
 }
+
+ion-modal {
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+  }
