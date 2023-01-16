@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   
 })
 export class HomePage implements OnInit {
+  isModalOpen = true;
 
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
   constructor() { }
 
   ngOnInit() {

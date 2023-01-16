@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-slider.component.scss'],
 })
 export class PostSliderComponent implements OnInit {
+  isModalOpen = true;
 
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
