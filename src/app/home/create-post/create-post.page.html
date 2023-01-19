@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>CreatePost</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-content class="ion-padding"> Let's post something nice</ion-content>
+  <ion-title class="ion-padding" color="tertiary">New post</ion-title>
+  <form #createPostForm="ngForm" (submit)="onSubmit(createPostForm)">
+    <ion-list>
+      <!-- Username input -->
+      <ion-item class="form-input">
+        <ion-label>Upload an picture</ion-label>
+        <ion-input type="file" #picture="ngModel" required name="picture"
+          [(ngModel)]="newPost.picture"></ion-input>
+      </ion-item>
+  
+      <!-- Error message displayed if the image is invalid -->
+      <ion-item lines="none" *ngIf="picture.invalid && (picture.touched || picture.dirty)">
+        <ion-text color="danger">Picture is required.</ion-text>
+      </ion-item>
+  
+      <!-- Description input -->
+      <!-- <ion-item class="form-input">
+        <ion-label>Description:</ion-label>
+        <ion-input inputmode="text" #password="ngModel" required name="description"
+          [(ngModel)]="newPost.description"></ion-input>
+      </ion-item> -->
+  
+      <!-- Error message displayed if the password is invalid -->
+      <!-- <ion-item lines="none" *ngIf="description.invalid && (description.touched || description.dirty)">
+        <ion-text color="danger">Description is required.</ion-text>
+      </ion-item> -->
+    </ion-list>
+    <div class="ion-padding">
+      <!-- Submit button -->
+      <ion-button type="submit" expand="block" [disabled]="createPostForm.invalid" class="prim-btn">Create post</ion-button>
+
+      <!-- Error message displayed if the login failed -->
+      <ion-text color="danger" *ngIf="uploadError">Upload failed</ion-text>
+    </div>
+  </form>
+  <ion-button routerLink="../register" fill="clear" class="ion-margin-horizontal">No account yet? Sign up.</ion-button>
 </ion-content>

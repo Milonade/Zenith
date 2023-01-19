@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Post } from '../../models/post';
-import { url } from "inspector";
+import { NewPost } from "src/app/models/new-post";
 
 @Injectable({ providedIn: "root" })
 
 export class PostService {
 
     imgHeader = new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${environment.qimgToken}`
     });
 
@@ -23,12 +23,14 @@ export class PostService {
         return this.http.get<Post[]>(`${environment.apiUrl}/posts`);
     }
 
-    // createPost(Post: Post): Observable<Post> {
-    //     return this.http.post<Post>(`${environment.apiUrl}/posts`, )
+    // createPost(FormData: FormData): Observable<NewPost> {
+    //     const imgUrl = this.uploadImage(img);
+    //     Post.picture.url = imgUrl
+    //     return this.http.post<NewPost>(`${environment.apiUrl}/posts`, Post)
     // }
 
-    uploadImage(imgRequest): Observable<any> {
-        return this.http.post<any>(`${environment.qimgUrl}/images/`, imgRequest, this.requestOptions);
+    uploadImage(img): Observable<any> {
+        return this.http.post<any>(`${environment.qimgUrl}/images/`, img, this.requestOptions);
     }
 
     retrieveImage(): Observable<any> {

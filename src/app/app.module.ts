@@ -8,7 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { NgAisModule } from 'angular-instantsearch';
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +21,7 @@ import { AuthInterceptorService } from "./auth/auth-interceptor.service";
     HttpClientModule,
     IonicStorageModule.forRoot(),
     NgAisModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [
     {
