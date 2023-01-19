@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
-import { PostService } from 'src/app/service/posts.service';
+import { PostService } from 'src/app/home/service/posts.service';
 
 @Component({
   selector: 'app-post-slider',
