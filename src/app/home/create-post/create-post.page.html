@@ -8,7 +8,7 @@
         <ion-input type="file" #picture="ngModel" required name="picture"
           [(ngModel)]="newPost.picture"></ion-input>        
       </ion-item>
-      <ion-button (click)="takeAndUploadPicture()">Take picture</ion-button>
+      <!-- <ion-button (click)="takeAndUploadPicture()">Take picture</ion-button> -->
   
       <!-- Error message displayed if the image is invalid -->
       <ion-item lines="none" *ngIf="picture.invalid && (picture.touched || picture.dirty)">
