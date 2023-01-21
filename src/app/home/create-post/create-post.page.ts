@@ -11,14 +11,17 @@ import { PostService } from '../service/posts.service';
 export class CreatePostPage implements OnInit {
 
   newPost: NewPost
-
   uploadError: boolean;
+  picture: any;
+  takeAndUploadPicture:PostService["takeAndUploadPicture"];
+  
 
   constructor(private post: PostService) {
     this.newPost = {
-      picture: undefined,
+      picture: undefined
     };
   }
+
 
   onSubmit(form: NgForm) {
     // Do not do anything if the form is invalid.
@@ -27,14 +30,14 @@ export class CreatePostPage implements OnInit {
     }
 
     this.uploadError = false;
-
-    this.post.uploadImage(form).subscribe({
-      error: (err) => {
-        this.uploadError = true;
-        console.warn(`upload failed: ${err.message}`);
-      },
-    });
-
+    // this.post.uploadImage(this.picture.base64String).subscribe({
+      
+    //   error: (err) => {
+    //     this.uploadError = true;
+    //     console.warn(`upload failed: ${err.message}`);
+    //   },
+      
+    // });
 
   }
 

@@ -2,12 +2,13 @@
   <ion-title class="ion-padding" color="tertiary">New post</ion-title>
   <form #createPostForm="ngForm" (submit)="onSubmit(createPostForm)">
     <ion-list>
-      <!-- Username input -->
+      <!-- Image input -->
       <ion-item class="form-input">
         <ion-label>Upload an picture</ion-label>
         <ion-input type="file" #picture="ngModel" required name="picture"
-          [(ngModel)]="newPost.picture"></ion-input>
+          [(ngModel)]="newPost.picture"></ion-input>        
       </ion-item>
+      <ion-button (click)="takeAndUploadPicture()">Take picture</ion-button>
   
       <!-- Error message displayed if the image is invalid -->
       <ion-item lines="none" *ngIf="picture.invalid && (picture.touched || picture.dirty)">
