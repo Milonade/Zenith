@@ -7,22 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   constructor() {}
-
   ngOnInit() {}
 
-  // Searchbar
+  // --- Searchbar ----
   showSearch = false;
-  items: any[] = [{ name: 'item 1' }, { name: 'item 2' }, { name: 'item 3' }];
+  items: any[];
   filteredItems: any[];
+  searchTerm: string;
+
+  filterItems(event: any) {
+    this.filteredItems = this.items?.filter(item => {
+      return item.name.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+  }
 
   showSearchBar(){
     this.showSearch = !this.showSearch;
-  }
-
-  filterItems(event: any) {
-    this.filteredItems = this.items.filter(item => {
-      return item.name.toLowerCase().includes(event.target.value.toLowerCase());
-    });
   }
 
 }
