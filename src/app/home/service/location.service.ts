@@ -1,13 +1,14 @@
 import { Geolocation } from '@capacitor/geolocation';
 import { Injectable, OnInit } from "@angular/core";
+import { Location } from 'src/app/models/location';
+import { Observable } from "rxjs";
+
 
 @Injectable({ providedIn: "root" })
 
 export class locationService {
     // Geolocation
-    printCurrentPosition = async () => {
-        const coordinates = await Geolocation.getCurrentPosition();
+    // addPosition$(location: Location): Observable<void> {
 
-        console.log('Current position:', coordinates);
-    };
+    // }
 }

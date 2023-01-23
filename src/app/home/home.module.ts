@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -17,7 +18,8 @@ import { PostComponent } from 'src/app/components/post/post.component';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    SharedModule
+    SharedModule,
+    LeafletModule
   ],
   declarations: [HomePage, PostSliderComponent, PostComponent],
 

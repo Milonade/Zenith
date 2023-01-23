@@ -7,8 +7,8 @@ import { Storage } from "@ionic/storage";
 import { AuthResponse } from "../models/auth-response";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
+import { environment } from "src/environments/environment";
 
-const API_URL = "https://zenith.onrender.com";
 
 /**
  * Authentication service for login/logout.
@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   logIn$(authRequest: AuthRequest): Observable<User> {
-    const authUrl = `${API_URL}/login`;
+    const authUrl = `${environment.apiUrl}/login`;
     return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
       // Delay the observable stream while persisting the authentication response.
       delayWhen((auth) => this.saveAuth$(auth)),
@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   register$(authRequest: AuthRequest): Observable<Object> {
-    const authUrl = `${API_URL}/users`;
+    const authUrl = `${environment.apiUrl}/users`;
     return this.http.post(authUrl, authRequest)
   }
 
