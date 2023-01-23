@@ -12,4 +12,25 @@ export class AccountPage implements OnInit {
   ngOnInit() {
   }
 
+  // setEmails$(): Observable<Post[]> {
+  //   return this.http.set<Post[]>(`${environment.apiUrl}/users`);
+  // }
+
+  editPseudo() {
+    console.log('Edit pseudo');
+  }
+
+  editEmail() {
+    console.log('Edit email');
+  }
+
+  editPassword() {
+    console.log('Edit password');
+  }
+
+  deleteAccount() {
+    confirm('You are about to delete your account. Do you want to delete definitively your account?');
+    //Action to delete account
+  }
+
 }

@@ -17,15 +17,17 @@
 
   <!-- Logo -->
   <ion-title>
-    <img 
-      src="../../../../assets/LOGO-ZENITH.png" 
-      *ngIf="!showSearch" >
+    <a href="/">
+      <img src="../../../../assets/LOGO-ZENITH.png" *ngIf="!showSearch">
+    </a>
   </ion-title>
 
 <!-- Profile icon -->
   <ion-buttons slot="end">
     <ion-button>
-      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      <a href="/account">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </a>
     </ion-button>
   </ion-buttons>
 </ion-toolbar>
