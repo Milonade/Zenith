@@ -9,6 +9,7 @@ import { IonicStorageModule } from "@ionic/storage-angular";
 import { NgAisModule } from 'angular-instantsearch';
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ReactiveFormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonicStorageModule.forRoot(),
     NgAisModule.forRoot(),
     ReactiveFormsModule,
+    LeafletModule
   ],
   providers: [
     {

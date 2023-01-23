@@ -2,7 +2,12 @@
 
 </app-header>
 
-<ion-content> 
-
+<ion-content>
+  <div 
+    class="map"
+    leaflet [leafletOptions]="mapOptions"
+    (leafletMapReady)="onMapReady($event)"
+    [leafletLayers]="mapMarkers">
+  </div>
   <app-post-slider></app-post-slider>
 </ion-content>
