@@ -1,4 +1,11 @@
 <app-header>
+  <ion-buttons slot="start">
+    <ion-button>
+      <a href="/">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </a>
+    </ion-button>
+  </ion-buttons>
 
 </app-header>
 <ion-content>
@@ -7,7 +14,7 @@
 <ion-list>
   <ion-item>
     <ion-label position="stacked">Pseudo</ion-label>
-    <ion-input type="text"></ion-input>
+    <!-- <ion-input type="email" value="{{user.pseudo}}"></ion-input> -->
     <ion-icon slot="end" (click)="editPseudo()" name="create-outline"></ion-icon>
   </ion-item>
   <ion-item>

@@ -13,7 +13,23 @@ import { Geolocation, Position } from '@capacitor/geolocation';
   styleUrls: ['./home.page.scss'],
 
 })
+
 export class HomePage implements OnInit {
+
+  showSearch = false;
+  items: any[];
+  filteredItems: any[];
+  searchTerm: string;
+
+  filterItems(event: any) {
+    this.filteredItems = this.items?.filter(item => {
+      return item.name.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+  }
+
+  showSearchBar(){
+    this.showSearch = !this.showSearch;
+  }
 
   currentPos: Position;
 

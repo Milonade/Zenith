@@ -1,5 +1,20 @@
 <app-header>
-
+    <!-- Searchbar icon -->
+  <ion-buttons slot="start">
+    <ion-button (click)="showSearchBar()">
+      <ion-icon *ngIf="!showSearch" name="search"></ion-icon>
+      <ion-icon *ngIf="showSearch" name="search"></ion-icon>
+    </ion-button>
+    <ion-searchbar 
+      [(ngModel)]="searchTerm"
+      class="searchbar-input"
+      *ngIf="showSearch" 
+      (ionInput)="filterItems($event)"
+      debounce="200" 
+      show-clear-button="focus"
+      placeholder="What are you looking for?">
+    </ion-searchbar>
+  </ion-buttons>
 </app-header>
 
 <ion-content>
