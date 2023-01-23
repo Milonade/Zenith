@@ -1,18 +1,39 @@
 <ion-toolbar>
+  <!-- Searchbar icon -->
   <ion-buttons slot="start">
     <ion-button (click)="showSearchBar()">
-      <ion-icon *ngIf="!showSearch" name="search"></ion-icon>
+      <ion-icon name="search"></ion-icon>
     </ion-button>
-    <ion-searchbar *ngIf="showSearch" (ionInput)="filterItems($event)" debounce="200" placeholder="What are you looking for?"></ion-searchbar>
+    <ion-searchbar 
+      [(ngModel)]="searchTerm"
+      class="searchbar-input"
+      *ngIf="showSearch" 
+      (ionInput)="filterItems($event)"
+      debounce="200" 
+      show-clear-button="focus"
+      placeholder="What are you looking for?">
+    </ion-searchbar>
   </ion-buttons>
 
+  <!-- Logo -->
   <ion-title>
-    <img src="../../../../assets/LOGO-ZENITH.png" >
+    <img 
+      src="../../../../assets/LOGO-ZENITH.png" 
+      *ngIf="!showSearch" >
   </ion-title>
 
+<!-- Profile icon -->
   <ion-buttons slot="end">
     <ion-button>
       <ion-icon slot="icon-only" name="person-circle"></ion-icon>
     </ion-button>
   </ion-buttons>
 </ion-toolbar>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{ item.name }}
+    </ion-item>
+  </ion-list>
+</ion-content>
