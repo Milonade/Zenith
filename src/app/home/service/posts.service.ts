@@ -1,11 +1,12 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { 
+import {
     Camera,
     CameraResultType,
     CameraSource,
     ImageOptions,
-    Photo} from '@capacitor/camera';
+    Photo
+} from '@capacitor/camera';
 import { from, Observable, switchMap, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Post } from '../../models/post';
@@ -21,14 +22,19 @@ export class PostService {
         'Authorization': `Bearer ${environment.qimgToken}`
     });
 
-    requestOptions = { headers: this.imgHeader };
+
 
     constructor(private http: HttpClient) { }
 
-    getPosts(): Observable<Post[]> {
+    getPosts$(): Observable<Post[]> {
         return this.http.get<Post[]>(`${environment.apiUrl}/posts`);
     }
 
+    postPost$(Post: NewPost): Observable<Object> {
+        return this.http.post(`${environment.apiUrl}/posts`, Post);
+    }
+
+    requestOptions = { headers: this.imgHeader };
     // createPost(FormData: FormData): Observable<NewPost> {
     //     const imgUrl = this.uploadImage(img);
     //     Post.picture.url = imgUrl
@@ -59,14 +65,14 @@ export class PostService {
      * once the picture has been taken. An error may be emitted instead if the
      * user does not take a picture.
      */
-     private takePicture(): Observable<Photo> {
+    private takePicture(): Observable<Photo> {
         // Prepare camera options.
         const options: ImageOptions = {
             quality: 50,
             resultType: CameraResultType.Base64,
             // You could also user Photos (to select from the gallery)
             // or Prompt to let the user decide. Your choice.
-            source: CameraSource.Prompt,
+            source: CameraSource.Photos,
         };
 
         // Start taking a picture.
@@ -78,31 +84,25 @@ export class PostService {
         return from(pictureDataPromise);
     }
 
-    private uploadImage(base64: string | ArrayBuffer): Observable<Image> {
+    uploadImage(base64: string | ArrayBuffer): Observable<Image> {
         const requestBody = {
             data: base64,
         };
-        const requestOptions = {
-            headers: {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                Authorization: `Bearer ${environment.qimgUrl}`,
-            },
-        };
 
         return this.http.post<Image>(
-            `${environment.qimgUrl}/images`,
+            `${environment.qimgUrl}`,
             requestBody,
-            requestOptions
+            this.requestOptions
         );
 
     }
 
     retrieveImage(): Observable<any> {
-        return this.http.get<any>(`${environment.qimgUrl}/images/`, this.requestOptions);
+        return this.http.get<any>(`${environment.qimgUrl}/`, this.requestOptions);
     }
 
     deleteImage(imgId): Observable<any> {
-        return this.http.post<any>(`${environment.qimgUrl}/images/${imgId}`, this.requestOptions);
+        return this.http.post<any>(`${environment.qimgUrl}/${imgId}`, this.requestOptions);
     }
 
 }

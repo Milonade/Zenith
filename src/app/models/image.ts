@@ -1,6 +1,6 @@
 export type Image = {
     id: string;
-    size: number;
+    size: string;
     url: string;
     createdAt: string;
   };
