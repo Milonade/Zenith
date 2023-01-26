@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NewPost } from 'src/app/models/new-post';
-import { PostService } from '../service/posts.service'; 
+import { Location } from 'src/app/models/location';
+import { PostService } from '../service/posts.service';
 import { Image } from 'src/app/models/image';
+import { Geolocation, Position } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-create-post',
@@ -14,7 +16,8 @@ export class CreatePostPage implements OnInit {
   newPost: NewPost
   uploadError: boolean;
   picture: Image;
-   
+  defineLocation: Location;
+  currentPos: Position;
 
   constructor(private post: PostService) {
     this.picture = {
@@ -22,24 +25,34 @@ export class CreatePostPage implements OnInit {
       size: "",
       url: "",
       createdAt: "",
-    }; 
+    };
     this.newPost = {
-      picture: this.picture,
+      picture: undefined,
+      location: {
+        type: 'Point',
+        coordinates: undefined
+      },
       description: "",
       creationDate: undefined,
       visitDate: undefined,
       modificationDate: undefined,
       visible: true,
-      userId: ""     
+      userId: ""
     }
- }
+  }
 
   uploadPicture() {
     this.post.takeAndUploadPicture().subscribe(data => {
       this.picture = data;
-      
+      console.log(this.picture);
+      this.newPost.picture = this.picture
     });
   }
+  // async currentLocation() {
+  //   this.currentPos = await Geolocation.getCurrentPosition()
+  //   console.log(this.currentPos);
+  //   this.defineLocation.cordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
+  // }
 
   onSubmit(form: NgForm) {
     console.log(form.value)
@@ -48,7 +61,7 @@ export class CreatePostPage implements OnInit {
     if (form.invalid) {
       return;
     }
-    
+
     this.uploadError = false;
     // this.post.uploadImage(this.picture.base64String).subscribe({     
     //   error: (err) => {
@@ -56,13 +69,17 @@ export class CreatePostPage implements OnInit {
     //     console.warn(`upload failed: ${err.message}`);
     //   },     
     // });
-    this.post.postPost$(this.newPost).subscribe( {
-      
+    this.post.postPost$(this.newPost).subscribe({
+
     });
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.currentPos = await Geolocation.getCurrentPosition()
+    console.log(this.currentPos);
+    this.newPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
+
   }
 
 }
