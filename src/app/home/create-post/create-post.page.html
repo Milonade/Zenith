@@ -1,27 +1,35 @@
 <ion-content>
   <ion-title class="ion-padding" color="tertiary">New post</ion-title>
+
+  <!-- Location input -->
+  <ion-item class="form-input">
+    <ion-label position="stacked">Location:</ion-label>
+    <ion-searchbar class="background-transparent" [showCancelButton]="true" selected="true" maxResults="5"></ion-searchbar>
+  </ion-item>
+
+  <!-- Image input -->
   <form #createPostForm="ngForm" (submit)="onSubmit(createPostForm)">
     <ion-list>
       <ion-item class="form-input">
-        <ion-label>Upload a picture</ion-label>
+        <ion-label position="stacked">Upload a picture</ion-label>
         <ion-button (click)="uploadPicture()">Take picture</ion-button>
         <img *ngIf="picture" [src]="picture.url" />
       </ion-item>
 
       <!-- Error message displayed if the image is invalid -->
-<!-- <ion-item lines="none" *ngIf="picture.invalid"> -->
-  <!-- <ion-text color="danger">picture is not the right size or format</ion-text>
+      <!-- <ion-item lines="none" *ngIf="picture.invalid"> -->
+      <!-- <ion-text color="danger">picture is not the right size or format</ion-text>
 </ion-item> -->
 
       <!-- Description input -->
       <ion-item class="form-input">
-        <ion-label>Description:</ion-label>
+        <ion-label position="stacked">Description:</ion-label>
         <ion-input inputmode="text" required name="description" [(ngModel)]="newPost.description"></ion-input>
       </ion-item>
 
       <!-- Visit date input -->
       <ion-item class="form-input">
-        <ion-label>Visite date:</ion-label>
+        <ion-label position="stacked">Visite date:</ion-label>
         <ion-datetime presentation="date" required name="Visit date" [(ngModel)]="newPost.visitDate"></ion-datetime>
       </ion-item>
 

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { Geolocation } from '@capacitor/geolocation';
 import { Post } from '../../models/post';
+import { Location } from '../../models/location';
+import { LocationService } from '../../home/service/location.service';
 
 @Component({
   selector: 'app-post',
@@ -8,10 +10,24 @@ import { Post } from '../../models/post';
   styleUrls: ['./post.component.scss'],
 })
 
+
 export class PostComponent implements OnInit {
- @Input() post: Post;
-  constructor() { }
+  @Input() post: Post;
 
-  ngOnInit() { }
+  location: any;
 
+  constructor(private adress: LocationService) {
+    this.location = {
+      cordinates: undefined
+    }
+  }
+
+
+
+  async ngOnInit() {
+    this.adress.reverseGeocode(this.post.location.coordinates[1], this.post.location.coordinates[0]).then(data => {
+      this.location = data;
+      console.log(this.location);
+    })
+  }
 }

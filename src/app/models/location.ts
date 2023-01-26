@@ -1,4 +1,3 @@
 export type Location = {
-    lat: number;
-    lng: number;
+    cordinates: number[];
 };
