@@ -4,10 +4,10 @@ export type NewPost = {
   picture: {
     url: string;
   };
-  // location: {
-  //     type: 'Point';
-  //     coordinates: number[];
-  // };
+  location: {
+    type: 'Point';
+      coordinates: number[];
+  };
   description: string;
   creationDate: Date;
   visitDate: Date;

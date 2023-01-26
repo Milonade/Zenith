@@ -15,5 +15,5 @@ export type Post = {
     visitDate: Date;
     modificationDate: Date;
     visible: boolean;
-    userId: User | string;
+    userId: User;
   };

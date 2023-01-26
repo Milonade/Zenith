@@ -2,13 +2,15 @@ import { Geolocation } from '@capacitor/geolocation';
 import { Injectable, OnInit } from "@angular/core";
 import { Location } from 'src/app/models/location';
 import { Observable } from "rxjs";
+import { NativeGeocoder } from '@capgo/nativegeocoder';
 
 
 @Injectable({ providedIn: "root" })
 
-export class locationService {
-    // Geolocation
-    // addPosition$(location: Location): Observable<void> {
-
-    // }
+export class LocationService {
+    async reverseGeocode(latitude: number, longitude: number) {
+        const adress = await NativeGeocoder.reverseGeocode({ latitude, longitude });
+        console.log(adress);
+        return adress;
+    }
 }

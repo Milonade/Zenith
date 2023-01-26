@@ -22,8 +22,6 @@ export class PostService {
         'Authorization': `Bearer ${environment.qimgToken}`
     });
 
-
-
     constructor(private http: HttpClient) { }
 
     getPosts$(): Observable<Post[]> {
@@ -35,11 +33,6 @@ export class PostService {
     }
 
     requestOptions = { headers: this.imgHeader };
-    // createPost(FormData: FormData): Observable<NewPost> {
-    //     const imgUrl = this.uploadImage(img);
-    //     Post.picture.url = imgUrl
-    //     return this.http.post<NewPost>(`${environment.apiUrl}/posts`, Post)
-    // }
 
     takeAndUploadPicture(): Observable<Image> {
         // Take a picture.

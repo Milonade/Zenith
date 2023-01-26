@@ -21,6 +21,7 @@ export class PostSliderComponent implements OnInit {
   ngOnInit() {
     this.postService.getPosts$().subscribe(data => {
       this.posts = data;
+      console.log(this.posts);
     });
   }
 }

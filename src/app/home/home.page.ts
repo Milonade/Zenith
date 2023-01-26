@@ -3,7 +3,7 @@ import { latLng, MapOptions, tileLayer, Map, marker, Marker } from 'leaflet';
 import { Location } from '../models/location';
 import { defaultIcon } from '../config/default-markers';
 import { Observable } from 'rxjs';
-import { locationService } from './service/location.service';
+import { LocationService } from './service/location.service';
 import { Geolocation, Position } from '@capacitor/geolocation';
 
 
@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   mapMarkers: Marker[];
   mapOptions: MapOptions;
 
-  constructor(private location: locationService) {
+  constructor(private location: LocationService) {
     this.mapMarkers = [];
 
     this.mapOptions = {
@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     this.currentPos = await Geolocation.getCurrentPosition()
-
+    console.log(this.currentPos);
     this.mapMarkers.push(marker([
       this.currentPos.coords.latitude,
       this.currentPos.coords.longitude
