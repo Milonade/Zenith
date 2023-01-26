@@ -14,7 +14,7 @@ import { LocationService } from '../../home/service/location.service';
 export class PostComponent implements OnInit {
   @Input() post: Post;
 
-  location: Location;
+  location: any;
 
   constructor(private adress: LocationService) {
     this.location = {
@@ -24,8 +24,10 @@ export class PostComponent implements OnInit {
 
 
 
- async ngOnInit() { 
-
+  async ngOnInit() {
+    this.adress.reverseGeocode(this.post.location.coordinates[1], this.post.location.coordinates[0]).then(data => {
+      this.location = data;
+      console.log(this.location);
+    })
   }
-
 }
