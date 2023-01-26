@@ -44,3 +44,24 @@ ion-modal {
     --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
   }
+
+/* Searchbar CSS */
+.searchbar-input.sc-ion-searchbar-md {
+    margin: 0px;
+    padding: 0px;
+    width: 250px;
+    height: auto;
+    font-size: 1.1rem;
+    color: var(--ion-color-tertiary);
+    background-color: none;
+    box-shadow: none !important;
+    outline: none;
+    border-bottom: 1px solid var(--ion-color-tertiary);
+}
+    
+.searchbar-search-icon { 
+    display: none;
+    visibility: hidden;
+    width:0; 
+    height:0; 
+}

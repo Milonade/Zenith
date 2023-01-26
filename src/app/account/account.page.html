@@ -1,3 +1,33 @@
+<app-header>
+  <ion-buttons slot="start">
+    <ion-button>
+      <a href="/">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </a>
+    </ion-button>
+  </ion-buttons>
+
+</app-header>
 <ion-content>
-  <ion-title></ion-title>
+  <ion-title>Profil</ion-title>
 </ion-content>
+<ion-list>
+  <ion-item>
+    <ion-label position="stacked">Pseudo</ion-label>
+    <!-- <ion-input type="email" value="{{user.pseudo}}"></ion-input> -->
+    <ion-icon slot="end" (click)="editPseudo()" name="create-outline"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Email</ion-label>
+     <!-- <ion-input type="email" value="{{user.email}}"></ion-input>  -->
+    <ion-icon slot="end" (click)="editEmail()" name="create-outline"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input type="password" ></ion-input>
+    <ion-icon slot="end" (click)="editPassword()" name="create-outline"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Delete my account</ion-label>
+    <ion-icon slot="end" (click)="deleteAccount()" name="trash-outline"></ion-icon>
+  </ion-item>
