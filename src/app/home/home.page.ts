@@ -41,6 +41,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     this.currentPos = await Geolocation.getCurrentPosition()
+    // this.currentPos = this.location.locate()
 
     this.mapMarkers.push(marker([
       this.currentPos.coords.latitude,
