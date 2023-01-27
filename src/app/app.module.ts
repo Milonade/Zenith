@@ -36,7 +36,7 @@ import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluste
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })

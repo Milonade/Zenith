@@ -13,9 +13,18 @@ const routes: Routes = [
     loadChildren: () => import('./create-post/create-post.module').then( m => m.CreatePostPageModule)
   },
   {
+    path: 'modify-post',
+    loadChildren: () => import('./modify-post/modify-post.module').then( m => m.ModifyPostPageModule)
+  },
+  {
     path: 'view-post',
     loadChildren: () => import('./view-post/view-post.module').then( m => m.ViewPostPageModule)
+  },
+  {
+    path: 'modify-post',
+    loadChildren: () => import('./modify-post/modify-post.module').then( m => m.ModifyPostPageModule)
   }
+
 ];
 
 @NgModule({

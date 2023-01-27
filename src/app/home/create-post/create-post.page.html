@@ -1,15 +1,24 @@
-<ion-content>
+<ion-header> 
   <ion-title class="ion-padding" color="tertiary">New post</ion-title>
+  <ion-button>
+    <a href="/">
+      <ion-icon slot="icon-only" name="arrow-back-outline" color="tertiary"></ion-icon>
+    </a>
+  </ion-button>
+</ion-header>
 
-  <!-- Location input -->
-  <ion-item class="form-input">
-    <ion-label position="stacked">Location:</ion-label>
-    <ion-searchbar class="background-transparent" [showCancelButton]="true" selected="true" maxResults="5"></ion-searchbar>
-  </ion-item>
-
-  <!-- Image input -->
+<ion-content class="ion-padding">
   <form #createPostForm="ngForm" (submit)="onSubmit(createPostForm)">
     <ion-list>
+      <!-- Location input -->
+      <ion-item class="form-input">
+        <ion-label position="stacked">Location:</ion-label>
+        <ion-searchbar class="background-transparent" [showCancelButton]="false" selected="true"
+          maxResults="5"></ion-searchbar>
+      </ion-item>
+
+      <!-- Image input -->
+
       <ion-item class="form-input">
         <ion-label position="stacked">Upload a picture</ion-label>
         <ion-button (click)="uploadPicture()">Take picture</ion-button>
@@ -27,17 +36,16 @@
         <ion-input inputmode="text" required name="description" [(ngModel)]="newPost.description"></ion-input>
       </ion-item>
 
+      <!-- Error message displayed if the description is invalid -->
+      <!-- <ion-item lines="none" *ngIf="description.invalid && (description.touched || description.dirty)">
+        <ion-text color="danger">Description is required.</ion-text>
+      </ion-item> -->
+
       <!-- Visit date input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Visite date:</ion-label>
         <ion-datetime presentation="date" required name="Visit date" [(ngModel)]="newPost.visitDate"></ion-datetime>
       </ion-item>
-
-
-      <!-- Error message displayed if the description is invalid -->
-      <!-- <ion-item lines="none" *ngIf="description.invalid && (description.touched || description.dirty)">
-        <ion-text color="danger">Description is required.</ion-text>
-      </ion-item> -->
     </ion-list>
     <div class="ion-padding">
       <!-- Submit button -->

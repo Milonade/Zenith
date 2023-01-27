@@ -27,10 +27,17 @@ export class PostService {
     getPosts$(): Observable<Post[]> {
         return this.http.get<Post[]>(`${environment.apiUrl}/posts`);
     }
+    getPost$(id:string): Observable<Object> {
+        return this.http.get<Post>(`${environment.apiUrl}/posts/`+ id);
+    }
 
     postPost$(Post: NewPost): Observable<Object> {
         return this.http.post(`${environment.apiUrl}/posts`, Post);
     }
+    patchPost$(id:string,Post: Post): Observable<Object> {
+        return this.http.patch(`${environment.apiUrl}/posts/`+ id, Post);
+    }
+
 
     requestOptions = { headers: this.imgHeader };
 
@@ -65,7 +72,7 @@ export class PostService {
             resultType: CameraResultType.Base64,
             // You could also user Photos (to select from the gallery)
             // or Prompt to let the user decide. Your choice.
-            source: CameraSource.Photos,
+            source: CameraSource.Prompt,
         };
 
         // Start taking a picture.

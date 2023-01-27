@@ -5,11 +5,14 @@ import { Location } from '../models/location';
 import { Observable } from 'rxjs';
 import { LocationService } from './service/location.service';
 import { Geolocation, Position } from '@capacitor/geolocation';
+<<<<<<< HEAD
 import { PostService } from './service/posts.service';
 import { Post } from '../models/post';
 import { PhotoIcon } from '../config/image-icons';
 import { ClicMarker } from '../config/clic-markers';
 import { Router } from '@angular/router';
+=======
+>>>>>>> 6be0f644ed1524e66fffaf9fc4b787fbe975edc3
 
 
 @Component({
@@ -26,6 +29,7 @@ export class HomePage implements OnInit {
   filteredItems: any[];
   searchTerm: string;
 
+<<<<<<< HEAD
   currentPos: Position;
   mapOptions: L.MapOptions;
   map: L.Map;
@@ -51,6 +55,8 @@ export class HomePage implements OnInit {
     };
   }
 
+=======
+>>>>>>> 6be0f644ed1524e66fffaf9fc4b787fbe975edc3
   filterItems(event: any) {
     this.filteredItems = this.items?.filter(item => {
       return item.name.toLowerCase().includes(event.target.value.toLowerCase());
@@ -61,9 +67,30 @@ export class HomePage implements OnInit {
     this.showSearch = !this.showSearch;
   }
 
+<<<<<<< HEAD
   onMapReady(map: L.Map) {
     setTimeout(() => map.invalidateSize(), 0);
     this.map = map
+=======
+  currentPos: Position;
+
+  mapMarkers: Marker[];
+  mapOptions: MapOptions;
+
+  constructor(private location: LocationService) {
+    this.mapMarkers = [];
+
+    this.mapOptions = {
+      layers: [
+        tileLayer(
+          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          { maxZoom: 18 }
+        )
+      ],
+      zoom: 13,
+      center: latLng(46.778186, 6.641524)
+    };
+>>>>>>> 6be0f644ed1524e66fffaf9fc4b787fbe975edc3
   }
 
   private createIcon(url: String): L.Icon {
@@ -72,6 +99,7 @@ export class HomePage implements OnInit {
     return photoIcon
   }
 
+<<<<<<< HEAD
   /**
   Retrieves post data to create markers with post images and ids. Users are redirected to post page when they click on a marker. Unfortunately, there's no Angular binding available for marker click event yet.
   */
@@ -112,6 +140,15 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.createMarkers()
     this.recenterMap()
+=======
+  async ngOnInit() {
+    this.currentPos = await Geolocation.getCurrentPosition()
+    this.mapMarkers.push(marker([
+      this.currentPos.coords.latitude,
+      this.currentPos.coords.longitude
+    ],
+      { icon: defaultIcon }))
+>>>>>>> 6be0f644ed1524e66fffaf9fc4b787fbe975edc3
   }
 
 }
