@@ -5,8 +5,6 @@ import { defaultIcon } from '../config/default-markers';
 import { Observable } from 'rxjs';
 import { LocationService } from './service/location.service';
 import { Geolocation, Position } from '@capacitor/geolocation';
-import { PostService } from './service/posts.service';
-import { Post } from '../models/post';
 
 
 @Component({
@@ -23,12 +21,6 @@ export class HomePage implements OnInit {
   filteredItems: any[];
   searchTerm: string;
 
-  currentPos: Position;
-  mapMarkers: Marker[];
-  mapOptions: MapOptions;
-
-  posts: Post[];
-
   filterItems(event: any) {
     this.filteredItems = this.items?.filter(item => {
       return item.name.toLowerCase().includes(event.target.value.toLowerCase());
@@ -39,9 +31,12 @@ export class HomePage implements OnInit {
     this.showSearch = !this.showSearch;
   }
 
+  currentPos: Position;
 
+  mapMarkers: Marker[];
+  mapOptions: MapOptions;
 
-  constructor(private location: LocationService, private post: PostService) {
+  constructor(private location: LocationService) {
     this.mapMarkers = [];
 
     this.mapOptions = {
@@ -61,13 +56,7 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.post.getPosts$().subscribe(data => {
-      this.posts = data;
-      console.log(this.posts);
-    });
-
     this.currentPos = await Geolocation.getCurrentPosition()
-
     this.mapMarkers.push(marker([
       this.currentPos.coords.latitude,
       this.currentPos.coords.longitude

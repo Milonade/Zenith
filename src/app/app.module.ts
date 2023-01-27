@@ -10,6 +10,7 @@ import { NgAisModule } from 'angular-instantsearch';
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 
 
@@ -34,7 +35,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-    }
+    },
+    NativeGeocoder, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
 })

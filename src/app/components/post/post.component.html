@@ -1,6 +1,9 @@
 <ion-card>
   <ion-card-header>
-   <ion-title>{{post.userId.username}}</ion-title>    
+    <ion-title>{{post.userId.username}}</ion-title>
+    <ion-button (click)="onEditPost(post)">
+      <a href="/modify-post" queryParams="{currentPost: selectedPost}">Edit</a>
+    </ion-button>
   </ion-card-header>
   <ion-card-content>
     <h2>{{location}}</h2>

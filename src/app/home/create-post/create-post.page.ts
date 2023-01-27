@@ -77,7 +77,6 @@ export class CreatePostPage implements OnInit {
 
   async ngOnInit() {
     this.currentPos = await Geolocation.getCurrentPosition()
-    console.log(this.currentPos);
     this.newPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
 
   }
