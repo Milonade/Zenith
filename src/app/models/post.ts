@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export type Post = {
-    id: string;
+    _id: string;
     picture: {
         url: string;
         ext: string;

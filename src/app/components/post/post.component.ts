@@ -4,6 +4,7 @@ import { Post } from '../../models/post';
 import { Location } from '../../models/location';
 import { LocationService } from '../../home/service/location.service';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -21,9 +22,9 @@ export class PostComponent implements OnInit {
     maxResults: 5
   };
 
-  selectedPost: Object;
+  post_id: any;
 
-  constructor(private nativeGeocoder: NativeGeocoder) {
+  constructor(private nativeGeocoder: NativeGeocoder,  private route: ActivatedRoute, private router: Router) {
     
   }
 
@@ -31,8 +32,12 @@ export class PostComponent implements OnInit {
     this.nativeGeocoder.reverseGeocode(this.post.location.coordinates[1], this.post.location.coordinates[0], this.options)
       .then((result: NativeGeocoderResult[]) => console.log(JSON.stringify(result[0])))
       .catch((error: any) => console.log(error));
+      // this.postId = +this.route.snapshot.paramMap.get('id');
   }
-  onEditPost(post: Post) {
-    this.selectedPost= post;
+
+  onEditPost(post_id: any) {
+    console.log(post_id);
+    this.router.navigate(['/modify-post/', post_id ]);
+   
   }
 }

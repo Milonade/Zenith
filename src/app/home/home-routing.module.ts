@@ -10,19 +10,19 @@ const routes: Routes = [
   },
   {
     path: 'create-post',
-    loadChildren: () => import('./create-post/create-post.module').then( m => m.CreatePostPageModule)
+    loadChildren: () => import('./create-post/create-post.module').then(m => m.CreatePostPageModule)
   },
   {
-    path: 'modify-post',
-    loadChildren: () => import('./modify-post/modify-post.module').then( m => m.ModifyPostPageModule)
+    path: 'modify-post/:_id',
+    loadChildren: () => import('./modify-post/modify-post.module').then(m => m.ModifyPostPageModule)
   },
   {
     path: 'view-post',
-    loadChildren: () => import('./view-post/view-post.module').then( m => m.ViewPostPageModule)
+    loadChildren: () => import('./view-post/view-post.module').then(m => m.ViewPostPageModule)
   },
   {
     path: 'modify-post',
-    loadChildren: () => import('./modify-post/modify-post.module').then( m => m.ModifyPostPageModule)
+    loadChildren: () => import('./modify-post/modify-post.module').then(m => m.ModifyPostPageModule)
   }
 
 ];
@@ -31,4 +31,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomePageRoutingModule {}
+export class HomePageRoutingModule { }

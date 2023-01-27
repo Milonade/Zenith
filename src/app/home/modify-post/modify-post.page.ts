@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-modify-post',
   templateUrl: './modify-post.page.html',
+  template: `<p>Post Id: {{ postId }}</p>`,
   styleUrls: ['./modify-post.page.scss'],
 })
 export class ModifyPostPage implements OnInit {
@@ -21,35 +22,39 @@ export class ModifyPostPage implements OnInit {
   defineLocation: Location;
   currentPos: Position;
   currentPost: Object;
+  postId: string;
 
-  constructor(private post: PostService, private route: ActivatedRoute,private http: HttpClient) {
+  constructor(private post: PostService, private http: HttpClient) {
     this.picture = {
       id: "",
       size: "",
       url: "",
       createdAt: "",
     };
-    // this.modifiedPost = {
-    //   picture: undefined,
-    //   location: {
-    //     type: 'Point',
-    //     coordinates: undefined
-    //   },
-    //   description: "",
-    //   creationDate: undefined,
-    //   visitDate: undefined,
-    //   modificationDate: undefined,
-    //   visible: true,
-    //   userId: undefined
-    // }
+    this.modifiedPost = {
+      _id: "",
+      picture:{
+        ext: ".jpg",
+        url: "",
+      },
+      location: {
+        type: 'Point',
+        coordinates: undefined
+      },
+      description: "",
+      creationDate: undefined,
+      visitDate: undefined,
+      modificationDate: undefined,
+      visible: true,
+      userId: undefined
+    }
   }
 
   uploadPicture() {
-    // this.post.takeAndUploadPicture().subscribe(data => {
-    //   this.picture = data;
-    //   console.log(this.picture);
-    //   this.modifiedPost.picture = this.picture
-    // });
+    this.post.takeAndUploadPicture().subscribe(data => {
+      this.picture = data;
+      this.modifiedPost.picture.url = this.picture.url
+    });
   }
 
   onSubmit(form: NgForm) {
@@ -74,9 +79,9 @@ export class ModifyPostPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.currentPost = this.route.snapshot.queryParams['currentPost'];
-    console.log(this.currentPost);
-    // this.post.getPost$(this.currentPost.id)
+    // this.postId = this.route.snapshot.queryParams['postId'];
+    // console.log(this.postId);
+    // this.post.getPost$(this.postId)
     // .subscribe((this.modifiedPost) => {
     //   // do something with the post
     // });
