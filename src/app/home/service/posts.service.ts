@@ -12,6 +12,7 @@ import { environment } from "src/environments/environment";
 import { Post } from '../../models/post';
 import { NewPost } from "src/app/models/new-post";
 import { Image } from "src/app/models/image";
+import { PostComments } from "src/app/models/post-comments";
 
 @Injectable({ providedIn: "root" })
 
@@ -27,8 +28,8 @@ export class PostService {
     getPosts$(): Observable<Post[]> {
         return this.http.get<Post[]>(`${environment.apiUrl}/posts`);
     }
-    getPost$(id:string): Observable<Post> {
-        return this.http.get<Post>(`${environment.apiUrl}/posts/`+ id);
+    getPost$(id:string): Observable<PostComments> {
+        return this.http.get<PostComments>(`${environment.apiUrl}/posts/`+ id);
     }
 
     postPost$(Post: NewPost): Observable<Object> {

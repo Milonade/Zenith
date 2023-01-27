@@ -21,9 +21,9 @@ import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluste
     HomePageRoutingModule,
     SharedModule,
     LeafletModule,
-    LeafletMarkerClusterModule
+    LeafletMarkerClusterModule,
   ],
-  declarations: [HomePage, PostSliderComponent, PostComponent],
+  declarations: [HomePage, PostSliderComponent],
 
 })
 export class HomePageModule {}

@@ -1,13 +1,13 @@
 <ion-card>
   <ion-card-header>
-    <ion-title>{{post.userId.username}}</ion-title>
+    <ion-title>{{post?.userId?.username}}</ion-title>
     <ion-button (click)="onEditPost(post._id)">
       <!-- <a href="/modify-post" queryParams="" >Edit</a> -->
     </ion-button>
   </ion-card-header>
   <ion-card-content>
     <h2>{{location}}</h2>
-    <ion-img src="{{post.picture.url}}"></ion-img>
-    <p>{{post.description}}</p>
+    <ion-img src="{{post?.picture?.url}}"></ion-img>
+    <p class="ion-margin-vertical">{{post?.description}}</p>
   </ion-card-content>
 </ion-card>

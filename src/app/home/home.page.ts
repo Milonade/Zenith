@@ -95,7 +95,6 @@ export class HomePage implements OnInit {
 
         marker.on('click', (evt) => {
           this.router.navigate(['post', evt.target.options.id])
-
         })
       }
     });
@@ -106,7 +105,7 @@ export class HomePage implements OnInit {
   */
   private async recenterMap() {
     this.currentPos = await Geolocation.getCurrentPosition()
-    this.map.setView([this.currentPos.coords.latitude, this.currentPos.coords.longitude], 9)
+    this.map.setView([this.currentPos.coords.latitude, this.currentPos.coords.longitude], 11)
   }
 
   ngOnInit() {
