@@ -16,20 +16,19 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
 
   location: any;
-  post_id: any;
+  post_id: string;
 
-  constructor( private route: ActivatedRoute, private router: Router) {
-    
+  constructor(private router: Router) {
+
   }
 
   async ngOnInit() {
-    
-      // this.postId = +this.route.snapshot.paramMap.get('id');
+
+    // this.postId = +this.route.snapshot.paramMap.get('id');
   }
 
-  onEditPost(post_id: any) {
-    console.log(post_id);
-    this.router.navigate(['/modify-post/', post_id ]);
-   
+  onEditPost(post_id: string) {
+    this.router.navigate(['/modify-post/', post_id]);
+
   }
 }

@@ -63,12 +63,13 @@ export class CreatePostPage implements OnInit {
     }
 
     this.uploadError = false;
-    // this.post.uploadImage(this.picture.base64String).subscribe({     
-    //   error: (err) => {
-    //     this.uploadError = true;
-    //     console.warn(`upload failed: ${err.message}`);
-    //   },     
-    // });
+    this.post.uploadImage(this.picture.url).subscribe({
+      error: (err) => {
+        this.uploadError = true;
+        console.warn(`upload failed: ${err.message}`);
+      },
+    });
+
     this.post.postPost$(this.newPost).subscribe({
 
     });

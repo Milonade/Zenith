@@ -5,13 +5,12 @@ import { PostService } from '../service/posts.service';
 import { Image } from 'src/app/models/image';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { Post } from 'src/app/models/post';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-modify-post',
   templateUrl: './modify-post.page.html',
-  template: `<p>Post Id: {{ postId }}</p>`,
   styleUrls: ['./modify-post.page.scss'],
 })
 export class ModifyPostPage implements OnInit {
@@ -22,9 +21,9 @@ export class ModifyPostPage implements OnInit {
   defineLocation: Location;
   currentPos: Position;
   currentPost: Object;
-  postId: string;
+  postId: any;
 
-  constructor(private post: PostService, private http: HttpClient) {
+  constructor(private post: PostService, private route: ActivatedRoute) {
     this.picture = {
       id: "",
       size: "",
@@ -33,7 +32,7 @@ export class ModifyPostPage implements OnInit {
     };
     this.modifiedPost = {
       _id: "",
-      picture:{
+      picture: {
         ext: ".jpg",
         url: "",
       },
@@ -58,7 +57,6 @@ export class ModifyPostPage implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value)
 
     // Do not do anything if the form is invalid.
     if (form.invalid) {
@@ -66,28 +64,30 @@ export class ModifyPostPage implements OnInit {
     }
 
     this.uploadError = false;
-    // this.post.uploadImage(this.picture.base64String).subscribe({     
-    //   error: (err) => {
-    //     this.uploadError = true;
-    //     console.warn(`upload failed: ${err.message}`);
-    //   },     
-    // });
-    // this.post.patchPost$(this.modifiedPost).subscribe({
+    this.post.uploadImage(this.picture.url).subscribe({
+      error: (err) => {
+        this.uploadError = true;
+        console.warn(`upload failed: ${err.message}`);
+      },
+    });
 
-    // });
 
+    this.post.patchPost$(this.postId, this.modifiedPost).subscribe({
+    });
   }
 
   async ngOnInit() {
-    // this.postId = this.route.snapshot.queryParams['postId'];
-    // console.log(this.postId);
-    // this.post.getPost$(this.postId)
-    // .subscribe((this.modifiedPost) => {
-    //   // do something with the post
-    // });
 
-    this.currentPos = await Geolocation.getCurrentPosition()
-    this.modifiedPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
+    this.route.params.subscribe(params => {
+      this.postId = params['_id'];
+    });
+
+    this.post.getPost$(this.postId)
+      .subscribe(data => {
+        this.modifiedPost = data;
+        console.log(this.modifiedPost);
+      });
+
 
   }
 
