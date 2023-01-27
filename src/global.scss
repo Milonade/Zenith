@@ -65,3 +65,17 @@ ion-modal {
     width:0; 
     height:0; 
 }
+
+.image-icon {
+    
+    div {
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        // clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 70% 75%, 50% 100%, 30% 75%, 0% 75%);
+
+    }
+}

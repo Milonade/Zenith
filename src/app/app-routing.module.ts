@@ -22,6 +22,11 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'post/:id',
+    loadChildren: () => import('./home/view-post/view-post.module').then(m => m.ViewPostPageModule)
+
   }
 
 ];

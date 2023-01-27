@@ -10,7 +10,7 @@ import { NgAisModule } from 'angular-instantsearch';
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 
 
 
@@ -24,7 +24,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     IonicStorageModule.forRoot(),
     NgAisModule.forRoot(),
     ReactiveFormsModule,
-    LeafletModule
+    LeafletModule,
+    LeafletMarkerClusterModule 
   ],
   providers: [
     {
@@ -36,7 +37,6 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
       useClass: AuthInterceptorService,
       multi: true,
     },
-    NativeGeocoder, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
 })

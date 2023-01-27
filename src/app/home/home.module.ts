@@ -11,6 +11,7 @@ import { HomePage } from './home.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PostSliderComponent } from 'src/app/components/post-slider/post-slider.component';
 import { PostComponent } from 'src/app/components/post/post.component';
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { PostComponent } from 'src/app/components/post/post.component';
     IonicModule,
     HomePageRoutingModule,
     SharedModule,
-    LeafletModule
+    LeafletModule,
+    LeafletMarkerClusterModule
   ],
   declarations: [HomePage, PostSliderComponent, PostComponent],
 
