@@ -10,6 +10,7 @@ import { NgAisModule } from 'angular-instantsearch';
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 
 
 
@@ -23,7 +24,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     IonicStorageModule.forRoot(),
     NgAisModule.forRoot(),
     ReactiveFormsModule,
-    LeafletModule
+    LeafletModule,
+    LeafletMarkerClusterModule 
   ],
   providers: [
     {
