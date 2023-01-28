@@ -28,11 +28,9 @@ export class CreateCommentPage implements OnInit {
       userId: this.userId,
       postId: this.route.snapshot.paramMap.get('id')
     }
-
-    this.commentError = false;
   }
 
-  async showSucessToast() {
+  async showSuccessToast() {
     const toast = await this.toastController.create({
       message: 'Comment posted successfully',
       duration: 1500,
@@ -48,15 +46,16 @@ export class CreateCommentPage implements OnInit {
     }
 
     this.comment.description = form.value.description
+    this.commentError = false;
 
     this.post.postComment$(this.comment).subscribe({
       next: () => {
         this.router.navigate(['post', this.comment.postId])
-        this.showSucessToast()
+        this.showSuccessToast()
       },
       error: (err) => {
         this.commentError = true;
-        console.warn(`Commenting failed: ${err.message}`);
+        console.warn(`Failed to post comment: ${err.message}`);
       },
     });
   }
