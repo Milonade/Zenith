@@ -23,7 +23,7 @@ export class ModifyPostPage implements OnInit {
   currentPost: Object;
   postId: any;
 
-  constructor(private post: PostService, private route: ActivatedRoute) {
+  constructor(private post: PostService, private route: ActivatedRoute,private router: Router) {
     this.picture = {
       id: "",
       size: "",
@@ -73,6 +73,8 @@ export class ModifyPostPage implements OnInit {
 
     this.post.patchPost$(this.postId, this.modifiedPost).subscribe({
     });
+
+    this.router.navigate(['/']);
   }
 
   async ngOnInit() {

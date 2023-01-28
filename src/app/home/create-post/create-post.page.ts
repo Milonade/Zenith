@@ -7,6 +7,7 @@ import { Image } from 'src/app/models/image';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LocationService, Feature } from '../service/location.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -27,7 +28,7 @@ export class CreatePostPage implements OnInit {
   currentPos: Position;
   locationIsCkecked: boolean;
 
-  constructor(private post: PostService, private auth: AuthService, private location: LocationService) {
+  constructor(private post: PostService, private auth: AuthService, private location: LocationService, private router: Router) {
     this.addresses = []
     this.selectedAddress = undefined;
     this.locationIsCkecked = false;
@@ -109,7 +110,10 @@ export class CreatePostPage implements OnInit {
         this.postPostError = true;
         console.warn(`Failed to post: ${err.message}`);
       }
+      
     });
+
+    
 
   }
 
