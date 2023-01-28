@@ -1,11 +1,12 @@
-<ion-header> 
-  <ion-title class="ion-padding" color="tertiary">New post</ion-title>
-  <ion-button>
-    <a href="/">
-      <ion-icon slot="icon-only" name="arrow-back-outline" color="tertiary"></ion-icon>
-    </a>
-  </ion-button>
-</ion-header>
+<app-header>
+  <ion-buttons slot="start">
+    <ion-button>
+      <a href="/">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </a>
+    </ion-button>
+  </ion-buttons>
+</app-header>
 
 <ion-content class="ion-padding">
   <form #createPostForm="ngForm" (submit)="onSubmit(createPostForm)">
@@ -13,8 +14,21 @@
       <!-- Location input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Location:</ion-label>
-        <ion-searchbar class="background-transparent" [showCancelButton]="false" selected="true"
-          maxResults="5"></ion-searchbar>
+        <ion-item>
+          <ion-checkbox slot="start" (ionChange)="onClick($event)"></ion-checkbox>
+          <ion-label>Use current location</ion-label>
+        </ion-item>
+        <ion-searchbar *ngIf="!locationIsCkecked" class="background-transparent"  placeholder="Search a place" selected="true" [debounce]="300"
+          maxResults="5" (ionInput)="search($event)" [value]="selectedAddress"></ion-searchbar>
+          <div>
+            <ion-list *ngIf="addresses.length > 0">
+              <ion-item button detail="false" *ngFor="let address of addresses" (click)="onSelect(address)">
+                <ion-label>
+                  {{ address }}
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
       </ion-item>
 
       <!-- Image input -->
