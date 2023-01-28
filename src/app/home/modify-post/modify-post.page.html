@@ -1,4 +1,4 @@
-<ion-header> 
+<ion-header>
   <ion-title class="ion-padding" color="tertiary">New post</ion-title>
   <ion-button>
     <a href="/">
@@ -12,6 +12,7 @@
     <ion-list>
 
       <!-- Location input -->
+      <!-- Default is users location -->
       <ion-item class="form-input">
         <ion-label position="stacked">Location:</ion-label>
         <ion-searchbar class="background-transparent" [showCancelButton]="false" selected="true"
@@ -22,19 +23,21 @@
       <ion-item class="form-input">
         <ion-label position="stacked">Upload a picture</ion-label>
         <ion-button (click)="uploadPicture()">Take picture</ion-button>
-        <img *ngIf="picture; else elseBlock" [src]="picture.url"/>
-        <ng-template #elseBlock><img [src]="modifiedPost.picture.url"/></ng-template>
+        <div *ngIf="picture.url; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock><img [src]="picture.url" /></ng-template>
+        <ng-template #elseBlock><img src="{{modifiedPost.picture.url}}" /></ng-template>
       </ion-item>
 
       <!-- Error message displayed if the image is invalid -->
-      <!-- <ion-item lines="none" *ngIf="picture.invalid"> -->
-      <!-- <ion-text color="danger">picture is not the right size or format</ion-text>
-</ion-item> -->
+      <!-- <ion-item lines="none" *ngIf="picture.invalid">
+        <ion-text color="danger">picture is not the right size or format</ion-text>
+      </ion-item> -->
 
       <!-- Description input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Description:</ion-label>
-        <ion-input inputmode="text" name="description" value="{{modifiedPost.description}}" [(ngModel)]="modifiedPost.description"></ion-input>
+        <ion-input inputmode="text" required name="description" value="{{modifiedPost.description}}"
+          [(ngModel)]="modifiedPost.description"></ion-input>
       </ion-item>
 
       <!-- Error message displayed if the description is invalid -->
@@ -45,7 +48,8 @@
       <!-- Visit date input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Visite date:</ion-label>
-        <ion-datetime presentation="date" required name="Visit date" value="{{modifiedPost.visitDate}}" [(ngModel)]="modifiedPost.visitDate"></ion-datetime>
+        <ion-datetime presentation="date" required name="Visit date" value="{{modifiedPost.visitDate}}"
+          [(ngModel)]="modifiedPost.visitDate"></ion-datetime>
       </ion-item>
     </ion-list>
     <div class="ion-padding">

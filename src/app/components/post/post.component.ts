@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { Post } from '../../models/post';
+import { PostService } from '../../home/service/posts.service';
 import { Location } from '../../models/location';
 import { LocationService } from '../../home/service/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class PostComponent implements OnInit {
   location: any;
   post_id: string;
 
-  constructor(private router: Router) {
+  constructor(private postService: PostService, private router: Router) {
 
   }
 
@@ -32,6 +33,11 @@ export class PostComponent implements OnInit {
 
   onEditPost(post_id: string) {
     this.router.navigate(['/modify-post/', post_id]);
+  }
+
+  onDeletePost(post_id: string) {
+    this.postService.deletePost$(post_id).subscribe({
+    });
   }
 
   addComment(id: string) {

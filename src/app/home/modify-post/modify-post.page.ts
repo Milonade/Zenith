@@ -71,7 +71,6 @@ export class ModifyPostPage implements OnInit {
       },
     });
 
-
     this.post.patchPost$(this.postId, this.modifiedPost).subscribe({
     });
   }
@@ -87,7 +86,6 @@ export class ModifyPostPage implements OnInit {
         this.modifiedPost = data.post;
         console.log(this.modifiedPost);
       });
-
 
   }
 

@@ -6,6 +6,7 @@
           <ion-text color="primary">
             <h2 class="no-marg">{{post?.userId?.username}}</h2>
             <p class="no-marg">{{ post?.location?.coordinates}}</p>
+            <p class="no-marg">{{ post.visitDate | date :'d MMMM y'}}</p>
           </ion-text>
         </ion-col>
         <ion-col size="auto">
@@ -15,7 +16,7 @@
           <ion-popover trigger="trigger-options" triggerAction="click">
             <ng-template>
               <ion-button (click)="onEditPost(post._id)" fill="clear">Edit</ion-button>
-              <ion-button fill="clear" color="secondary">Delete</ion-button>
+              <ion-button fill="clear" color="secondary" (click)="onDeletePost(post._id)">Delete</ion-button>
             </ng-template>
           </ion-popover>
         </ion-col>
