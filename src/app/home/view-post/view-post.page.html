@@ -1,4 +1,13 @@
-<app-header></app-header>
+<app-header>
+  <ion-buttons slot="start">
+    <ion-button>
+      <a href="/">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </a>
+    </ion-button>
+  </ion-buttons>
+</app-header>
 <ion-content>
-  <app-post [post]="post" class="detail-post"></app-post>
+  <app-post [post]="post" [comments]="comments" [showComments]="showComments" [totalComments]="totalComments"
+    class="detail-post"></app-post>
 </ion-content>

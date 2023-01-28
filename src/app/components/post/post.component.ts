@@ -14,6 +14,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class PostComponent implements OnInit {
   @Input() post: Post;
+  @Input() comments: Comment[];
+  @Input() showComments: boolean;
+  @Input() totalComments: number;
 
   location: any;
   post_id: string;
@@ -29,6 +32,9 @@ export class PostComponent implements OnInit {
 
   onEditPost(post_id: string) {
     this.router.navigate(['/modify-post/', post_id]);
+  }
 
+  addComment(id: string) {
+    this.router.navigate(['post', id, 'comment'])
   }
 }

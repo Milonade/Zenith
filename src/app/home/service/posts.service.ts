@@ -13,6 +13,8 @@ import { Post } from '../../models/post';
 import { NewPost } from "src/app/models/new-post";
 import { Image } from "src/app/models/image";
 import { PostComments } from "src/app/models/post-comments";
+import { commentResponse } from "src/app/models/comment-response";
+import { newComment } from "src/app/models/new-comment";
 
 @Injectable({ providedIn: "root" })
 
@@ -35,8 +37,20 @@ export class PostService {
     postPost$(Post: NewPost): Observable<Object> {
         return this.http.post(`${environment.apiUrl}/posts`, Post);
     }
-    patchPost$(id:string,Post: Post): Observable<Object> {
+    patchPost$(id:string, Post: Post): Observable<Object> {
         return this.http.patch(`${environment.apiUrl}/posts/`+ id, Post);
+    }
+
+    deletePost$(id: string): Observable<Post> {
+        return this.http.delete<Post>(`${environment.apiUrl}/posts/${id}`)
+    }
+
+    getComments$(postId: string): Observable<commentResponse> {
+        return this.http.get<commentResponse>(`${environment.apiUrl}/posts/${postId}/comments`)
+    }
+
+    postComment$(Comment: newComment): Observable<Comment> {
+        return this.http.post<Comment>(`${environment.apiUrl}/posts/${Comment.postId}/comments`, Comment)
     }
 
 

@@ -1,0 +1,38 @@
+<app-header>
+  <ion-buttons slot="start">
+    <ion-button>
+      <a href="/">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </a>
+    </ion-button>
+  </ion-buttons>
+</app-header>
+
+<ion-content>
+  <form #commentForm="ngForm" (submit)="onSubmit(commentForm)">
+    <ion-list>
+      <ion-item class="form-input ion-padding-vertical">
+        <ion-label>Description:</ion-label>
+        <ion-textarea #description="ngModel" required name="description" minlength="2" maxlength="200"
+          [(ngModel)]="comment.description" [autoGrow]="true"></ion-textarea>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="description.errors?.['required'] && (description.dirty || description.touched)">
+        <ion-text color="danger">Description is required.</ion-text>
+      </ion-item>
+      <ion-item lines="none" *ngIf="description.errors?.['minlength']">
+        <ion-text color="danger">Description must contain 2 at least characters.</ion-text>
+      </ion-item>
+      <ion-item lines="none" *ngIf="description.errors?.['maxlength']">
+        <ion-text color="danger">Description cannot exceed 200 characters.</ion-text>
+      </ion-item>
+
+      <div class="ion-padding">
+        <!-- Submit button -->
+        <ion-button type="submit" expand="block" [disabled]="commentForm.invalid" class="prim-btn">Post</ion-button>
+
+        <ion-text color="danger" *ngIf="commentError">Failed to post comment</ion-text>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

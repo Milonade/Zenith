@@ -24,9 +24,9 @@ const routes: Routes = [
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'post/:id',
-    loadChildren: () => import('./home/view-post/view-post.module').then(m => m.ViewPostPageModule)
-
+    path: 'post/:id/comment',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./home/view-post/create-comment/create-comment.module').then( m => m.CreateCommentPageModule)
   }
 
 ];

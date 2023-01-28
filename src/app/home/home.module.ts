@@ -10,8 +10,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PostSliderComponent } from 'src/app/components/post-slider/post-slider.component';
-import { PostComponent } from 'src/app/components/post/post.component';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -22,6 +22,7 @@ import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluste
     SharedModule,
     LeafletModule,
     LeafletMarkerClusterModule,
+    Ng2SearchPipeModule
   ],
   declarations: [HomePage, PostSliderComponent],
 

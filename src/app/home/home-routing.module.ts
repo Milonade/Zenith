@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./modify-post/modify-post.module').then(m => m.ModifyPostPageModule)
   },
   {
-    path: 'view-post',
+    path: 'post/:id',
     loadChildren: () => import('./view-post/view-post.module').then(m => m.ViewPostPageModule)
   },
   {

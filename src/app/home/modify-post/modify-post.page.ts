@@ -84,7 +84,7 @@ export class ModifyPostPage implements OnInit {
 
     this.post.getPost$(this.postId)
       .subscribe(data => {
-        this.modifiedPost = data;
+        this.modifiedPost = data.post;
         console.log(this.modifiedPost);
       });
 
