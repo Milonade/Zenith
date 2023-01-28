@@ -18,24 +18,3 @@ ion-title img{
 ion-buttons{
     display:flex
 }
-
-/* Searchbar CSS */
-.searchbar-input.sc-ion-searchbar-md {
-    margin: 0px;
-    padding: 0px;
-    width: 250px;
-    height: auto;
-    font-size: 1.1rem;
-    color: var(--ion-color-tertiary);
-    background-color: none;
-    box-shadow: none !important;
-    outline: none;
-    border-bottom: 1px solid var(--ion-color-tertiary);
-}
-
-.searchbar-search-icon { 
-    display: none;
-    visibility: hidden;
-    width:0; 
-    height:0; 
-}
