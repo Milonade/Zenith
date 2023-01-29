@@ -31,9 +31,7 @@ Zenith is an app that lets you journal your travels and share them with other us
 It will open a localhost page on your favorite browser.
 
 ## How does the app work ?
-1. First, an authentication will be required. 
-   
-   You are invited to create an account.
+1. First, an authentication will be required. You are invited to create an account.
 
 2. To use the app at his best, you must **allow your browser to use your geolocation**. 
    
