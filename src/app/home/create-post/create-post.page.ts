@@ -7,6 +7,13 @@ import { Image } from 'src/app/models/image';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LocationService, Feature } from '../service/location.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { Router } from '@angular/router';
+
+interface Address {
+  name: string,
+  coordinates: number[]
+}
 
 @Component({
   selector: 'app-create-post',
@@ -22,15 +29,25 @@ export class CreatePostPage implements OnInit {
   uploadError: boolean;
   postPostError: boolean;
 
-  addresses: string[];
-  selectedAddress: string;
+  addresses: Address[];
+  selectedAddress: Address;
   currentPos: Position;
-  locationIsCkecked: boolean;
+  isGeolocated: boolean;
+  deniedGeoloc: boolean;
 
-  constructor(private post: PostService, private auth: AuthService, private location: LocationService) {
+  maxDate: string;
+
+  constructor(private post: PostService, private auth: AuthService, private location: LocationService, private toast: ToastService, private router: Router) {
+
+    this.maxDate = new Date().toISOString();
+
     this.addresses = []
-    this.selectedAddress = undefined;
-    this.locationIsCkecked = false;
+    this.selectedAddress = {
+      name: '',
+      coordinates: []
+    }
+    this.deniedGeoloc = false;
+    this.isGeolocated = false;
 
     this.auth.getUser$().subscribe(user => {
       this.userId = user._id
@@ -47,7 +64,7 @@ export class CreatePostPage implements OnInit {
       picture: undefined,
       location: {
         type: 'Point',
-        coordinates: undefined
+        coordinates: []
       },
       description: "",
       creationDate: undefined,
@@ -69,8 +86,8 @@ export class CreatePostPage implements OnInit {
     const searchTerm: string = event.target.value.toLowerCase()
 
     if (searchTerm && searchTerm.length > 0) {
-      this.location.searchWord(searchTerm).subscribe((features: Feature[]) => {
-        this.addresses = features.map(feat => feat.place_name)
+      this.location.searchWord$(searchTerm).subscribe((features: Feature[]) => {
+        this.addresses = features.map(feat => ({name: feat.place_name, coordinates: feat.geometry.coordinates}))
       })
 
     } else {
@@ -78,17 +95,29 @@ export class CreatePostPage implements OnInit {
     }
   }
 
-  onSelect(address: string) {
+  onSelect(address: Address) {
     this.selectedAddress = address
     this.addresses = []
   }
 
-  onClick(event: any) {
-    event.target.checked ? this.locationIsCkecked = true : this.locationIsCkecked = false;
+  async onClick(evt: any) {
+
+    if (evt.target.checked) {
+      try {
+        this.currentPos = await Geolocation.getCurrentPosition()
+        this.newPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
+        this.isGeolocated = true;
+      } catch(err) {
+        this.deniedGeoloc = true;
+        this.toast.show('Geolocation failed')
+      }
+    } else {
+      this.isGeolocated = false;
+      this.newPost.location.coordinates = []
+    }
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value)
 
     // Do not do anything if the form is invalid.
     if (form.invalid) {
@@ -103,19 +132,32 @@ export class CreatePostPage implements OnInit {
       },
     });
 
+    this.newPost.description = form.value.description
+    this.newPost.visitDate = new Date(form.value.visitDate)
+
+    if (!this.isGeolocated) {
+      this.newPost.location.coordinates = [
+        this.selectedAddress.coordinates[0],
+        this.selectedAddress.coordinates[1]
+      ]
+    }
+
     this.postPostError = false;
     this.post.postPost$(this.newPost).subscribe({
+      next: () => {
+        this.router.navigate(['/'])
+        this.toast.show('Post created successfully')
+      },
       error: (err) => {
         this.postPostError = true;
         console.warn(`Failed to post: ${err.message}`);
       }
     });
-
   }
 
-  async ngOnInit() {
-    // this.currentPos = await Geolocation.getCurrentPosition()
-    // this.newPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
+  ngOnInit() {
+
   }
 
 }
+

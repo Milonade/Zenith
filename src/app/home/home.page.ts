@@ -10,6 +10,7 @@ import { Post } from '../models/post';
 import { PhotoIcon } from '../config/image-icons';
 import { ClicMarker } from '../config/clic-markers';
 import { Router } from '@angular/router';
+import { ToastService } from '../services/toast.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class HomePage implements OnInit {
   posts: Post[];
   postIcon: L.Icon;
 
-  constructor(private post: PostService, private router: Router) {
+  constructor(private post: PostService, private router: Router, private toast: ToastService) {
     this.mapOptions = {
       layers: [
         L.tileLayer(
@@ -68,7 +69,7 @@ export class HomePage implements OnInit {
 
   private createIcon(url: String): L.Icon {
     const photoIcon = new PhotoIcon()
-    photoIcon.options.html = `<div style="background-image: url(${url});"></div>`
+    photoIcon.options.html = `<div style="background-image: url(${url}), url(https://i.kym-cdn.com/photos/images/original/001/102/822/616.jpg);"></div>`
     return photoIcon
   }
 
@@ -104,8 +105,12 @@ export class HomePage implements OnInit {
   Get the users location and recenter the map.
   */
   private async recenterMap() {
-    this.currentPos = await Geolocation.getCurrentPosition()
-    this.map.setView([this.currentPos.coords.latitude, this.currentPos.coords.longitude], 11)
+    try {
+      this.currentPos = await Geolocation.getCurrentPosition()
+      this.map.setView([this.currentPos.coords.latitude, this.currentPos.coords.longitude], 11)
+    } catch(err) {
+      this.toast.show('Geolocation failed')
+    }
   }
 
   ngOnInit() {

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { newComment } from 'src/app/models/new-comment';
 import { PostService } from '../../service/posts.service';
-import { ToastController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-create-comment',
@@ -17,7 +17,7 @@ export class CreateCommentPage implements OnInit {
   commentError: boolean;
   userId: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService, private post: PostService, private toastController: ToastController) {
+  constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService, private post: PostService, private toast: ToastService) {
 
     this.auth.getUser$().subscribe(user => {
       this.userId = user._id
@@ -28,16 +28,6 @@ export class CreateCommentPage implements OnInit {
       userId: this.userId,
       postId: this.route.snapshot.paramMap.get('id')
     }
-  }
-
-  async showSuccessToast() {
-    const toast = await this.toastController.create({
-      message: 'Comment posted successfully',
-      duration: 1500,
-      position: 'bottom'
-    });
-
-    await toast.present();
   }
 
   onSubmit(form: NgForm) {
@@ -51,7 +41,7 @@ export class CreateCommentPage implements OnInit {
     this.post.postComment$(this.comment).subscribe({
       next: () => {
         this.router.navigate(['post', this.comment.postId])
-        this.showSuccessToast()
+        this.toast.show('Comment posted successfully')
       },
       error: (err) => {
         this.commentError = true;

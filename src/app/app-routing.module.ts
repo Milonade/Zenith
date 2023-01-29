@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'post/:id/comment',
     canActivate: [AuthGuard],
     loadChildren: () => import('./home/view-post/create-comment/create-comment.module').then( m => m.CreateCommentPageModule)
-  }
+  },
 
 ];
 

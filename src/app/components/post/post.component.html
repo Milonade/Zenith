@@ -5,10 +5,10 @@
         <ion-col>
           <ion-text color="primary">
             <h2 class="no-marg">{{post?.userId?.username}}</h2>
-            <p class="no-marg">{{ post?.location?.coordinates}}</p>
+            <p class="no-marg">{{ placeName }}</p>
           </ion-text>
         </ion-col>
-        <ion-col size="auto">
+        <ion-col size="auto" *ngIf="post?.userId?._id == authId">
           <ion-button id="trigger-options" fill="clear">
             <ion-icon name="ellipsis-horizontal"></ion-icon>
           </ion-button>
@@ -24,7 +24,7 @@
   </ion-card-header>
   <ion-card-content>
     <p>{{location}}</p>
-    <ion-img src="{{post?.picture?.url}}"></ion-img>
+    <ion-img [src]="post?.picture?.url" (ionError)="onError()"></ion-img>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -41,5 +41,12 @@
       </ion-row>
       <hr/>
     </ion-grid>
+    <ion-list *ngIf="totalComments > 0">
+      <ion-item *ngFor="let comment of comments" lines="none">
+        <ion-label>
+          <span class="bold ion-padding-end">{{ comment?.userId?.username }}</span> {{ comment?.description }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </ion-card-content>
 </ion-card>

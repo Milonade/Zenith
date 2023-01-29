@@ -1,9 +1,7 @@
 <app-header>
   <ion-buttons slot="start">
-    <ion-button>
-      <a href="/">
-        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-      </a>
+    <ion-button routerLink="/">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
 </app-header>
@@ -14,60 +12,65 @@
       <!-- Location input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Location:</ion-label>
-        <ion-item>
+        <ion-item *ngIf="!deniedGeoloc">
           <ion-checkbox slot="start" (ionChange)="onClick($event)"></ion-checkbox>
           <ion-label>Use current location</ion-label>
         </ion-item>
-        <ion-searchbar *ngIf="!locationIsCkecked" class="background-transparent"  placeholder="Search a place" selected="true" [debounce]="300"
-          maxResults="5" (ionInput)="search($event)" [value]="selectedAddress"></ion-searchbar>
-          <div>
-            <ion-list *ngIf="addresses.length > 0">
-              <ion-item button detail="false" *ngFor="let address of addresses" (click)="onSelect(address)">
-                <ion-label>
-                  {{ address }}
-                </ion-label>
-              </ion-item>
-            </ion-list>
-          </div>
+        <ion-searchbar *ngIf="!isGeolocated" class="background-transparent" placeholder="Search a place" selected="true"
+          [debounce]="500" maxResults="5" (ionChange)="search($event)" [value]="selectedAddress.name"></ion-searchbar>
+        <div>
+          <ion-list *ngIf="addresses.length > 0">
+            <ion-item button detail="false" *ngFor="let address of addresses" (click)="onSelect(address)">
+              <ion-label>
+                {{ address.name }}
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
       </ion-item>
 
       <!-- Image input -->
-
       <ion-item class="form-input">
         <ion-label position="stacked">Upload a picture</ion-label>
         <ion-button (click)="uploadPicture()">Take picture</ion-button>
         <img *ngIf="picture" [src]="picture.url" />
       </ion-item>
 
-      <!-- Error message displayed if the image is invalid -->
-      <!-- <ion-item lines="none" *ngIf="picture.invalid"> -->
-      <!-- <ion-text color="danger">picture is not the right size or format</ion-text>
-</ion-item> -->
-
       <!-- Description input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Description:</ion-label>
-        <ion-input inputmode="text" required name="description" [(ngModel)]="newPost.description"></ion-input>
+        <ion-input inputmode="text" #description="ngModel" required name="description" [(ngModel)]="newPost.description"
+          required></ion-input>
       </ion-item>
 
       <!-- Error message displayed if the description is invalid -->
-      <!-- <ion-item lines="none" *ngIf="description.invalid && (description.touched || description.dirty)">
+      <ion-item lines="none" *ngIf="description.invalid && (description.touched || description.dirty)">
         <ion-text color="danger">Description is required.</ion-text>
-      </ion-item> -->
+      </ion-item>
 
       <!-- Visit date input -->
       <ion-item class="form-input">
-        <ion-label position="stacked">Visite date:</ion-label>
-        <ion-datetime presentation="date" required name="Visit date" [(ngModel)]="newPost.visitDate"></ion-datetime>
+        <ion-label position="stacked">Visit date:</ion-label>
+        <ion-datetime presentation="date" required name="VisitDate" [(ngModel)]="newPost.visitDate" #visitDate="ngModel"
+          required [value]="maxDate" [max]="maxDate" min="1950-01-01T00:00:00"></ion-datetime>
+      </ion-item>
+
+      <!-- Error message displayed if the visitDate is invalid -->
+      <ion-item lines="none" *ngIf="description.invalid">
+        <ion-text color="danger">visit date is required.</ion-text>
       </ion-item>
     </ion-list>
     <div class="ion-padding">
       <!-- Submit button -->
-      <ion-button type="submit" expand="block" [disabled]="createPostForm.invalid" class="prim-btn">Create
+      <ion-button type="submit" expand="block" [disabled]="createPostForm.invalid"
+        class="prim-btn">Create
         post</ion-button>
 
       <!-- Error message displayed if the upload failed -->
       <ion-text color="danger" *ngIf="uploadError">Upload failed</ion-text>
+
+      <!-- Error message displayed if the posting failed -->
+      <ion-text color="danger" *ngIf="postPostError">Failed to post</ion-text>
     </div>
   </form>
 </ion-content>

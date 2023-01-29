@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/models/comment';
@@ -14,10 +15,14 @@ export class ViewPostPage implements OnInit {
   post: Post;
   totalComments: number;
   showComments: boolean;
-  comments: Array<any>;
+  comments: Comment[];
 
-  constructor(private postService: PostService, private route: ActivatedRoute) {
+  constructor(private postService: PostService, private route: ActivatedRoute, private location: Location) {
     this.showComments = true;
+  }
+
+  goBack() {
+    this.location.back()
   }
 
   ngOnInit() {
@@ -28,6 +33,7 @@ export class ViewPostPage implements OnInit {
 
     this.postService.getComments$(this.route.snapshot.paramMap.get('id')).subscribe(commentRes => {
       this.comments = commentRes.data
+      console.log(this.comments)
     })
   }
 
