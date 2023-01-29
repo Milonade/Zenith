@@ -133,7 +133,7 @@ export class CreatePostPage implements OnInit {
     });
 
     this.newPost.description = form.value.description
-    this.newPost.visitDate = new Date(form.value.visitDate)
+    this.newPost.visitDate = form.value.visitDate
 
     if (!this.isGeolocated) {
       this.newPost.location.coordinates = [

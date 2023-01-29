@@ -18,6 +18,11 @@
 </app-header>
 
 <ion-content>
+  <ion-fab slot="fixed" vertical="top" horizontal="end">
+    <ion-fab-button size="small" color="light" id="open-modal">
+      <ion-icon name="options-outline" color="secondary"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <div 
     class="map"
     leaflet [leafletOptions]="mapOptions"
@@ -25,4 +30,15 @@
     [leafletLayers]="mapMarkers">
   </div>
   <app-post-slider></app-post-slider>
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-item>
+        <ion-checkbox slot="start" (ionChange)="onClick($event)"></ion-checkbox>
+        <ion-label>Only see my own posts</ion-label>
+      </ion-item>
+      <ion-button expand="block" (click)="onApplyFilters()">
+        Apply filters
+      </ion-button>
+    </ng-template>
+  </ion-modal>
 </ion-content>

@@ -14,7 +14,7 @@ The objective here was to build the front-end of our application following the f
 
 Zenith is an app that lets you journal your travels and share them with other users.
 * You can post places that you visited, with a picture, a description and a location.
-* You have two view modals, the main one is a map and the other one is a basic feed, as you can see on Instagram.
+* You have two views, the main one is a map and the other one is a basic feed like Instagram.
 ___
 
 ## Installation and run API

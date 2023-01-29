@@ -33,7 +33,6 @@ export class ViewPostPage implements OnInit {
 
     this.postService.getComments$(this.route.snapshot.paramMap.get('id')).subscribe(commentRes => {
       this.comments = commentRes.data
-      console.log(this.comments)
     })
   }
 
