@@ -32,13 +32,13 @@ It will open a localhost page on your favorite browser.
 1. First, an authentication will be required. 
    You are invited to create an account.
 
-2. To use the app at his best, you must allow your browser to use your geolocation. From this, you will see the map zoom in the zone where you are at the moment. You may find a post from one friend nearby. :-)
+2. To use the app at his best, you must **allow your browser to use your geolocation**. From this, you will see the map zoom in the zone where you are at the moment. You may find a post from one friend nearby. :-)
 
-3. You can create a post, by taking a picture or choosing one of your library. You can also choose if you want to share it with your friends (public post must be ticked) or leave it on your personal travel's journal (untick public post). 
+3. You can **create a post**, by taking a picture or choosing one of your library. You can also choose if you want to share it with your friends (public post must be ticked) or leave it on your personal travel's journal (untick public post). 
 
    NB: As we could have taken the photo on a trip to London last week, we left the choice to be able to publish a photo at an earlier date, as well as to choose a different location than the current one.
 
-4. It is possible to switch views. There is the main view, with the map, and the modal view below, which shows the publications in chronological order (feed). 
+4. It is possible to **switch views**. There is the main view, with the map, and the modal view below, which shows the publications in chronological order (feed). 
    In addition, if you only want to see your trips, you can check the box in the "feed" modal.
 
 ## Little hacks in case the app crashes...
@@ -47,7 +47,7 @@ It will open a localhost page on your favorite browser.
 
 - Make sure your `environments.ts`file is not empty. It should have this: 
 
-````
+````js
 export const environment = {
   production: false,
   apiUrl: "https://zenith.onrender.com",
@@ -60,10 +60,16 @@ export const environment = {
 };
 ````
 
-
 ## Useful links
 [DevMobil Course](https://mediacomem.github.io/comem-devmobil/latest/)
 
 [Zenith Repos](https://github.com/JasmineMolanoco/Zenith)
 
 ![Zenith Logo](src/assets/LOGO-ZENITH.png)
+
+### Authors:
+[Meryl Dubois](https://github.com/Meryl-D/)
+
+[Clarisse Gagnebin](https://github.com/clagnar/)
+
+[Jasmine Molano](https://github.com/JasmineMolanoco/)
