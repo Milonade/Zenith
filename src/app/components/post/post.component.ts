@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { Post } from '../../models/post';
+import { PostService } from '../../home/service/posts.service';
 import { Location } from '../../models/location';
 import { Feature, LocationService } from '../../home/service/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,7 +26,7 @@ export class PostComponent implements OnInit {
   placeName: string;
   alternateUrl: string;
 
-  constructor(private router: Router, private auth: AuthService, private loca: LocationService) {
+  constructor(private router: Router, private auth: AuthService, private loca: LocationService, private postService: PostService) {
 
     this.alternateUrl = "https://i.kym-cdn.com/photos/images/original/001/102/822/616.jpg";
 
@@ -49,6 +50,11 @@ export class PostComponent implements OnInit {
 
   onEditPost(post_id: string) {
     this.router.navigate(['/modify-post/', post_id]);
+  }
+
+  onDeletePost(post_id: string) {
+    this.postService.deletePost$(post_id).subscribe({
+    });
   }
 
   addComment(id: string) {

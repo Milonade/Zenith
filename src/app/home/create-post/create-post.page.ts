@@ -152,6 +152,7 @@ export class CreatePostPage implements OnInit {
         this.postPostError = true;
         console.warn(`Failed to post: ${err.message}`);
       }
+      
     });
   }
 
