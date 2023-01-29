@@ -21,7 +21,7 @@
     [leafletLayers]="mapMarkers">
   </div>
   <app-post-slider></app-post-slider>
-  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+  <!-- <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-text color="tertiary" class="ion-padding-horizontal">
         <h2>
@@ -31,7 +31,7 @@
       <ion-item>
         <ion-checkbox slot="start" (ionChange)="onClick($event)"></ion-checkbox>
         <ion-label>Only see my own posts</ion-label>
-      </ion-item>
+      </ion-item> -->
       <!-- <ion-item>
         <ion-datetime-button datetime="datetime "></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
@@ -40,9 +40,9 @@
           </ng-template>
         </ion-modal>
       </ion-item> -->
-      <ion-button expand="block" (click)="onApplyFilters()" class="ion-padding">
+      <!-- <ion-button expand="block" (click)="onApplyFilters()" class="ion-padding">
         Apply filters
       </ion-button>
     </ng-template>
-  </ion-modal>
+  </ion-modal> -->
 </ion-content>

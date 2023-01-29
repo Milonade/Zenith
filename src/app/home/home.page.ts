@@ -41,6 +41,7 @@ export class HomePage implements OnInit {
 
   showOtherPosts: boolean;
 
+
   constructor(private post: PostService, private router: Router, private toast: ToastService) {
     this.showOtherPosts = true;
     this.mapOptions = {
@@ -120,27 +121,27 @@ export class HomePage implements OnInit {
     }
   }
 
-  onApplyFilters() {
+  // onApplyFilters() {
       
-      this.router.navigate([], {queryParams: {query: this.filterQuery}});
-      // const evt = event as CustomEvent<OverlayEventDetail<string>>;
-      // console.log(evt)
-      this.modal.dismiss(null);
+  //     this.router.navigate([], {queryParams: {query: this.filterQuery}});
+  //     // const evt = event as CustomEvent<OverlayEventDetail<string>>;
+  //     // console.log(evt)
+  //     this.modal.dismiss(null);
 
-  }
+  // }
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    console.log(ev)
-  }
+  // onWillDismiss(event: Event) {
+  //   const ev = event as CustomEvent<OverlayEventDetail<string>>;
+  //   console.log(ev)
+  // }
 
-  onClick(evt: any) {
-    if(evt.target.checked) {
-      this.showOtherPosts = false;
-    } else {
-      this.showOtherPosts = true;
-    }
-  }
+  // onClick(evt: any) {
+  //   if(evt.target.checked) {
+  //     this.showOtherPosts = false;
+  //   } else {
+  //     this.showOtherPosts = true;
+  //   }
+  // }
 
   ngOnInit() {
   }
