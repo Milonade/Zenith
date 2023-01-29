@@ -5,12 +5,8 @@
         <ion-col>
           <ion-text color="primary">
             <h2 class="no-marg">{{post?.userId?.username}}</h2>
-<<<<<<< HEAD
             <p class="no-marg">{{ placeName }}</p>
-=======
-            <p class="no-marg">{{ post?.location?.coordinates}}</p>
             <p class="no-marg">{{ post.visitDate | date :'d MMMM y'}}</p>
->>>>>>> 6f72b5349055e9f74bfd635b92a41717348e59b4
           </ion-text>
         </ion-col>
         <ion-col size="auto" *ngIf="post?.userId?._id == authId">
@@ -23,6 +19,8 @@
               <ion-button fill="clear" color="secondary" (click)="onDeletePost(post._id)">Delete</ion-button>
             </ng-template>
           </ion-popover>
+          <!-- Error message displayed if the deletion failed -->
+        <ion-text color="danger" *ngIf="deletePostError">Failed to delete post</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>

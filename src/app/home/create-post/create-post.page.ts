@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NewPost } from 'src/app/models/new-post';
-import { Location } from 'src/app/models/location';
 import { PostService } from '../service/posts.service';
 import { Image } from 'src/app/models/image';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { AuthService } from 'src/app/auth/auth.service';
-import { LocationService, Feature } from '../service/location.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { LocationService, Feature } from '../service/location.service';
 import { Router } from '@angular/router';
 
 interface Address {
@@ -37,7 +36,8 @@ export class CreatePostPage implements OnInit {
 
   maxDate: string;
 
-  constructor(private post: PostService, private auth: AuthService, private location: LocationService, private toast: ToastService, private router: Router) {
+  constructor(private post: PostService, private auth: AuthService, private location: LocationService, 
+    private toast: ToastService, private router: Router) {
 
     this.maxDate = new Date().toISOString();
 

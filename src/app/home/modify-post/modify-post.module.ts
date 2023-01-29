@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ModifyPostPageRoutingModule } from './modify-post-routing.module';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ModifyPostPage } from './modify-post.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { ModifyPostPage } from './modify-post.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ModifyPostPageRoutingModule
+    ModifyPostPageRoutingModule,
+    SharedModule
   ],
   declarations: [ModifyPostPage]
 })

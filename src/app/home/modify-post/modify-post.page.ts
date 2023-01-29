@@ -6,7 +6,14 @@ import { Image } from 'src/app/models/image';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { Post } from 'src/app/models/post';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/auth/auth.service';
+import { LocationService, Feature } from '../service/location.service';
+import { ToastService } from 'src/app/services/toast.service';
+
+interface Address {
+  name: string,
+  coordinates: number[]
+}
 
 @Component({
   selector: 'app-modify-post',
@@ -15,30 +22,55 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ModifyPostPage implements OnInit {
 
-  modifiedPost: Post;
-  uploadError: boolean;
+  editPost: Post;
   picture: Image;
-  defineLocation: Location;
-  currentPos: Position;
-  currentPost: Object;
   postId: any;
+  userId: any;
 
-  constructor(private post: PostService, private route: ActivatedRoute,private router: Router) {
+  uploadError: boolean;
+  editPostError: boolean;
+
+  addresses: Address[];
+  selectedAddress: Address;
+  currentPos: Position;
+  isGeolocated: boolean;
+  deniedGeoloc: boolean;
+  hasSelectedAddress: boolean;
+  hasChangedPicture: boolean;
+
+  maxDate: string;
+
+  constructor(private post: PostService, private location: LocationService, private toast: ToastService,
+    private route: ActivatedRoute, private router: Router, private auth: AuthService) {
+
+    this.maxDate = new Date().toISOString();
+
+    this.addresses = []
+    this.selectedAddress = {
+      name: '',
+      coordinates: []
+    }
+    this.deniedGeoloc = false;
+    this.isGeolocated = false;
+    this.hasSelectedAddress = false;
+    this.hasChangedPicture = false;
+
     this.picture = {
       id: "",
       size: "",
       url: "",
       createdAt: "",
     };
-    this.modifiedPost = {
+
+    this.editPost = {
       _id: "",
       picture: {
-        ext: ".jpg",
+        ext: "",
         url: "",
       },
       location: {
         type: 'Point',
-        coordinates: undefined
+        coordinates: []
       },
       description: "",
       creationDate: undefined,
@@ -52,8 +84,43 @@ export class ModifyPostPage implements OnInit {
   uploadPicture() {
     this.post.takeAndUploadPicture().subscribe(data => {
       this.picture = data;
-      this.modifiedPost.picture.url = this.picture.url
+      this.hasChangedPicture = true;
     });
+  }
+
+  search(event: any) {
+    const searchTerm: string = event.target.value.toLowerCase()
+
+    if (searchTerm && searchTerm.length > 0) {
+      this.location.searchWord$(searchTerm).subscribe((features: Feature[]) => {
+        this.addresses = features.map(feat => ({ name: feat.place_name, coordinates: feat.geometry.coordinates }))
+      })
+
+    } else {
+      this.addresses = []
+    }
+  }
+
+  onSelect(address: Address) {
+    this.selectedAddress = address
+    this.addresses = []
+    this.hasSelectedAddress = true;
+  }
+
+  async onClick(evt: any) {
+
+    if (evt.target.checked) {
+      try {
+        this.currentPos = await Geolocation.getCurrentPosition()
+        this.editPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
+        this.isGeolocated = true;
+      } catch (err) {
+        this.deniedGeoloc = true;
+        this.toast.show('Geolocation failed')
+      }
+    } else {
+      this.isGeolocated = false;
+    }
   }
 
   onSubmit(form: NgForm) {
@@ -63,18 +130,41 @@ export class ModifyPostPage implements OnInit {
       return;
     }
 
-    this.uploadError = false;
-    this.post.uploadImage(this.picture.url).subscribe({
-      error: (err) => {
-        this.uploadError = true;
-        console.warn(`upload failed: ${err.message}`);
+
+    this.editPost.description = form.value.description
+    this.editPost.visitDate = form.value.visitDate
+
+    if (!this.isGeolocated && this.hasSelectedAddress) {
+      this.editPost.location.coordinates = [
+        this.selectedAddress.coordinates[0],
+        this.selectedAddress.coordinates[1]
+      ]
+    }
+
+    if (this.hasChangedPicture) {
+      this.editPost.picture.url = this.picture.url
+      this.uploadError = false;
+      this.post.uploadImage(this.picture.url).subscribe({
+        error: (err) => {
+          this.uploadError = true;
+          console.warn(`upload failed: ${err.message}`);
+        },
+      });
+    }
+
+    this.editPostError = false;
+    this.post.patchPost$(this.postId, this.editPost).subscribe({
+      next: () => {
+        this.router.navigate(['/'])
+        this.toast.show('Post edited successfully')
       },
+      error: (err) => {
+        this.editPostError = true;
+        console.warn(`Failed to edit post: ${err.message}`);
+      }
+
     });
 
-    this.post.patchPost$(this.postId, this.modifiedPost).subscribe({
-    });
-
-    this.router.navigate(['/']);
   }
 
   async ngOnInit() {
@@ -85,8 +175,7 @@ export class ModifyPostPage implements OnInit {
 
     this.post.getPost$(this.postId)
       .subscribe(data => {
-        this.modifiedPost = data.post;
-        console.log(this.modifiedPost);
+        this.editPost = data.post;
       });
 
   }
