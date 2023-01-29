@@ -51,8 +51,6 @@ For the app to work, you need to get 2 api tokens. One for [mapBox](https://www.
 
 - Make sure your own envrionment file contains the api tokens needed by the app.
 
-````
-
 ## Useful links
 [DevMobil Course](https://mediacomem.github.io/comem-devmobil/latest/)
 
