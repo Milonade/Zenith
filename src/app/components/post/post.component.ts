@@ -6,6 +6,7 @@ import { Location } from '../../models/location';
 import { Feature, LocationService } from '../../home/service/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-post',
@@ -25,8 +26,11 @@ export class PostComponent implements OnInit {
   authId: string;
   placeName: string;
   alternateUrl: string;
+  deletePostError: boolean;
+ 
 
-  constructor(private router: Router, private auth: AuthService, private loca: LocationService, private postService: PostService) {
+  constructor(private router: Router, private auth: AuthService, private loca: LocationService,  private toast: ToastService,
+    private postService: PostService) {
 
     this.alternateUrl = "https://i.kym-cdn.com/photos/images/original/001/102/822/616.jpg";
 
@@ -53,7 +57,17 @@ export class PostComponent implements OnInit {
   }
 
   onDeletePost(post_id: string) {
+    this.deletePostError = false;
     this.postService.deletePost$(post_id).subscribe({
+      next: () => {
+        this.router.navigate(['/'])
+        this.toast.show('Post deleted successfully')
+      },
+      error: (err) => {
+        this.deletePostError = true;
+        console.warn(`Failed to delete: ${err.message}`);
+      }
+
     });
   }
 

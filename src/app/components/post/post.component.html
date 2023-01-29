@@ -19,6 +19,8 @@
               <ion-button fill="clear" color="secondary" (click)="onDeletePost(post._id)">Delete</ion-button>
             </ng-template>
           </ion-popover>
+          <!-- Error message displayed if the deletion failed -->
+        <ion-text color="danger" *ngIf="deletePostError">Failed to delete post</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
