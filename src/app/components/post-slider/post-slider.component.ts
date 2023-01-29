@@ -14,6 +14,7 @@ export class PostSliderComponent implements OnInit {
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+    //dismiss modal when routed to another page
   }
 
   posts:Post[];
