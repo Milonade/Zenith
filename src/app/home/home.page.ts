@@ -37,6 +37,7 @@ export class HomePage implements OnInit {
 
   posts: Post[];
   postIcon: L.Icon;
+  filterQuery: string;
 
   showOtherPosts: boolean;
 
@@ -120,6 +121,8 @@ export class HomePage implements OnInit {
   }
 
   onApplyFilters() {
+      
+      this.router.navigate([], {queryParams: {query: this.filterQuery}});
       // const evt = event as CustomEvent<OverlayEventDetail<string>>;
       // console.log(evt)
       this.modal.dismiss(null);
@@ -140,6 +143,9 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(): void {
     this.createMarkers()
     this.recenterMap()
   }
