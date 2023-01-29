@@ -1,4 +1,4 @@
-import { Component, makeEnvironmentProviders, OnInit } from '@angular/core';
+import { Component, makeEnvironmentProviders, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import "leaflet.markercluster";
 import { Location } from '../models/location';
@@ -11,6 +11,8 @@ import { PhotoIcon } from '../config/image-icons';
 import { ClicMarker } from '../config/clic-markers';
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 
 
 @Component({
@@ -21,6 +23,7 @@ import { ToastService } from '../services/toast.service';
 })
 
 export class HomePage implements OnInit {
+  @ViewChild(IonModal) modal: IonModal;
 
   showSearch = false;
   items: any[];
@@ -35,7 +38,10 @@ export class HomePage implements OnInit {
   posts: Post[];
   postIcon: L.Icon;
 
+  showOtherPosts: boolean;
+
   constructor(private post: PostService, private router: Router, private toast: ToastService) {
+    this.showOtherPosts = true;
     this.mapOptions = {
       layers: [
         L.tileLayer(
@@ -110,6 +116,26 @@ export class HomePage implements OnInit {
       this.map.setView([this.currentPos.coords.latitude, this.currentPos.coords.longitude], 11)
     } catch(err) {
       this.toast.show('Geolocation failed')
+    }
+  }
+
+  onApplyFilters() {
+      // const evt = event as CustomEvent<OverlayEventDetail<string>>;
+      // console.log(evt)
+      this.modal.dismiss(null);
+
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    console.log(ev)
+  }
+
+  onClick(evt: any) {
+    if(evt.target.checked) {
+      this.showOtherPosts = false;
+    } else {
+      this.showOtherPosts = true;
     }
   }
 
