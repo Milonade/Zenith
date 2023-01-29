@@ -35,9 +35,9 @@ You are invited to create an account.
 2. To use the app at his best, you must allow your browser to use your geolocation. From this, you will see the map zoom in the zone where you are at the moment. You may find a post from one friend nearby. :-)
 
 3. You can create a post, by taking a picture or choosing one of your library. You can also choose if you want to share it with your friends (public post must be ticked) or leave it on your personal travel's journal (untick public post). 
-- NB: As we could have taken the photo on a trip to London last week, we left the choice to be able to publish a photo at an earlier date, as well as to choose a different location than the current one.
+NB: As we could have taken the photo on a trip to London last week, we left the choice to be able to publish a photo at an earlier date, as well as to choose a different location than the current one.
 
-4. Il est possible d’interchanger de vue. Il existe la vue principale, avec la map, et celle de la modale au-dessous, qui propose les publications dans un ordre chronologique (feed). De plus, si vous souhaitez voir uniquement vos voyages, vous pouvez cocher la case dans la modale de « feed ».
+4. It is possible to switch views. There is the main view, with the map, and the modal view below, which shows the publications in chronological order (feed). In addition, if you only want to see your trips, you can check the box in the "feed" modal.
 
 ## Little hacks in case the app crashes...
 
