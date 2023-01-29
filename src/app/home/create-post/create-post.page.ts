@@ -36,7 +36,7 @@ export class CreatePostPage implements OnInit {
 
   maxDate: string;
 
-  constructor(private post: PostService, private auth: AuthService, private location: LocationService, 
+  constructor(private post: PostService, private auth: AuthService, private location: LocationService,
     private toast: ToastService, private router: Router) {
 
     this.maxDate = new Date().toISOString();
@@ -75,6 +75,11 @@ export class CreatePostPage implements OnInit {
     }
   }
 
+  isVisible() {
+    this.newPost.visible = !this.newPost.visible
+    console.log(this.newPost.visible)
+  }
+  
   uploadPicture() {
     this.post.takeAndUploadPicture().subscribe(data => {
       this.picture = data;
@@ -87,7 +92,7 @@ export class CreatePostPage implements OnInit {
 
     if (searchTerm && searchTerm.length > 0) {
       this.location.searchWord$(searchTerm).subscribe((features: Feature[]) => {
-        this.addresses = features.map(feat => ({name: feat.place_name, coordinates: feat.geometry.coordinates}))
+        this.addresses = features.map(feat => ({ name: feat.place_name, coordinates: feat.geometry.coordinates }))
       })
 
     } else {
@@ -107,7 +112,7 @@ export class CreatePostPage implements OnInit {
         this.currentPos = await Geolocation.getCurrentPosition()
         this.newPost.location.coordinates = [this.currentPos.coords.longitude, this.currentPos.coords.latitude];
         this.isGeolocated = true;
-      } catch(err) {
+      } catch (err) {
         this.deniedGeoloc = true;
         this.toast.show('Geolocation failed')
       }
@@ -152,7 +157,7 @@ export class CreatePostPage implements OnInit {
         this.postPostError = true;
         console.warn(`Failed to post: ${err.message}`);
       }
-      
+
     });
   }
 

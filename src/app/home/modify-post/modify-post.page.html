@@ -10,6 +10,12 @@
   <form #editPostForm="ngForm" (submit)="onSubmit(editPostForm)">
     <ion-list>
 
+      <!-- public or private post -->
+      <ion-item>
+        <ion-label>Public post</ion-label>
+        <ion-toggle [enableOnOffLabels]="true" checked="{{editPost.visible}}" (ionChange)="isVisible()"></ion-toggle>
+      </ion-item>
+
       <!-- Location input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Location:</ion-label>

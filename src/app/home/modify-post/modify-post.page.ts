@@ -76,9 +76,13 @@ export class ModifyPostPage implements OnInit {
       creationDate: undefined,
       visitDate: undefined,
       modificationDate: undefined,
-      visible: true,
+      visible: undefined,
       userId: undefined
     }
+  }
+
+  isVisible() {
+    this.editPost.visible = !this.editPost.visible
   }
 
   uploadPicture() {

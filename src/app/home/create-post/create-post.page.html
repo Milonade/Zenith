@@ -9,6 +9,13 @@
 <ion-content class="ion-padding">
   <form #createPostForm="ngForm" (submit)="onSubmit(createPostForm)">
     <ion-list>
+
+      <!-- public or private post -->
+      <ion-item>
+        <ion-label>Public post</ion-label>
+        <ion-toggle [enableOnOffLabels]="true" checked="true" (ionChange)="isVisible()"></ion-toggle>
+      </ion-item>
+
       <!-- Location input -->
       <ion-item class="form-input">
         <ion-label position="stacked">Location:</ion-label>
@@ -60,7 +67,7 @@
         <ion-text color="danger">visit date is required.</ion-text>
       </ion-item>
     </ion-list>
-    
+
     <div class="ion-padding">
       <!-- Submit button -->
       <ion-button type="submit" expand="block" [disabled]="createPostForm.invalid" class="prim-btn">Create
