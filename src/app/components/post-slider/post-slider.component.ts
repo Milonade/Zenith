@@ -28,7 +28,6 @@ export class PostSliderComponent implements OnInit {
     this.auth.getUser$().subscribe(user => {
       this.userId = user._id
     })
-
   }
 
   onClick(evt: any) {
