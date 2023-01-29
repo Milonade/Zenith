@@ -1,47 +1,47 @@
 # Zenith
 
 ## About
-As part of the DevMobil course of the 3rd year of media engineering, we realized an application mainly with Ionic6, Angular and TypeScript.
+As part of the DevMobil course of the 3rd year of media engineering, we developed an application using Ionic6, Angular and TypeScript.
 
-The objective here was to build the front-end of our application following the first part of the course, where we had developed the back-end (API).
+The goal of this project was to build the front-end of our application following the first part of the course, where we had developed the back-end (API).
 
-Our application uses two API, one for the [images](https://qimg.onrender.com/doc/) and the [one we developed](https://github.com/Meryl-D/zenith-api)
+Our application uses three API, one for the [images](https://qimg.onrender.com/doc/), one for [geocoding](https://www.mapbox.com/geocoding) and the [one we developed](https://github.com/Meryl-D/zenith-api)
 
 Zenith is an app that lets you journal your travels and share them with other users.
 * You can post places that you visited, with a picture, a description and a location.
 * Other users can comment your posts, if you decided to let them see the post (public ≠ private post).
 * You have two views, the main one is a map and the other one is a basic feed like Instagram.
 
-## Installation and run the Zenith-App
+## Install and run the Zenith-App
 
-1. Simply fork or download [the project here](https://github.com/JasmineMolanoco/Zenith)
+1. Simply fork or download this project
 
-2. Moove to the project file with `cd ./pathToProject`
+2. Move to the project file with `cd ./pathToProject`
 
 3. Then you can install dependancies 
 ```bash
   npm install
 ```
 
-4. Now you can run the app (local)
+4. Now you can run the app locally
 
 ```bash
   ionic serve
 ```
-It will open a localhost page on your favorite browser.
+For the app to work, you need to get 2 api tokens. One for [mapBox](https://www.mapbox.com/) and one for [Qimg](https://qimg.onrender.com/doc/). You can simply copy the sample environment file and add your own tokens there.
 
 ## How does the app work ?
-1. First, an authentication will be required. You are invited to create an account.
+1. First, an authentication is required. You are invited to create an account.
 
-2. To use the app at his best, you must **allow your browser to use your geolocation**. 
+2. To use the app at its best, you must **allow your browser to use your geolocation**. 
    
-   From this, you will see the map zoom in the zone where you are at the moment. You may find a post from one friend nearby. :-)
+   From this, you will see the map zoom into the zone where you are at the moment. You may find a post from another friendly user nearby. :-)
 
-3. You can **create a post**, by taking a picture or choosing one of your library. You can also choose if you want to share it with your friends (public post must be ticked) or leave it on your personal travel's journal (untick public post). 
+3. You can **create a post**, by taking a picture or choosing one of from your gallery. You can also choose if you want to share it with your friends (public post must be ticked) or leave it on your personal travel's journal (untick public post). 
 
    NB: As we could have taken the photo on a trip to London last week, we left the choice to be able to publish a photo at an earlier date, as well as to choose a different location than the current one.
 
-4. It is possible to **switch views**. There is the main view, with the map, and the modal view below, which shows the publications in chronological order (feed). 
+4. It is possible to **switch views**. There is the main view, with the map, and a modal view below, which shows the posts in chronological order (feed). 
    
    In addition, if you only want to see your trips, you can check the box in the "feed" modal.
 
@@ -49,19 +49,8 @@ It will open a localhost page on your favorite browser.
 
 - Try to reload the page, and make sure your `ionic serve` command is still active on your terminal.
 
-- Make sure your `environments.ts`file is not empty. It should have this: 
+- Make sure your own envrionment file contains the api tokens needed by the app.
 
-````js
-export const environment = {
-  production: false,
-  apiUrl: "https://zenith.onrender.com",
-  qimgUrl: "https://qimg.onrender.com/api/images/",
-  qimgToken: "V0FlUgFH1ot/vhb3BlyWETy2QfOgV0BKMKrj8hIVXHMSugjvgcsFaSDTUgsCtOc89pQh02uqlNsTYIk3W2weGwCEgjJL+UtHVIKv5MjZFwOXzTkPiiLOpbVyBcxJHwEc0zol2HCaGE85UVjq2LdMlHgDASm6261hlw12iZkz84I=",
-  mapBox: {
-    accessToken: "pk.eyJ1IjoibWVyeWwtZCIsImEiOiJjbGRmdHJxZmcwYzhrM3BuMGs2dnlrZ2d6In0.pcQE-nixyFImZpwcZZjuQA",
-    geocodeUrl: "https://api.mapbox.com/geocoding/v5/mapbox.places/"
-  }
-};
 ````
 
 ## Useful links
