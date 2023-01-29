@@ -12,11 +12,11 @@
 </app-header>
 
 <ion-content>
-  <ion-fab slot="fixed" vertical="top" horizontal="end">
+  <!-- <ion-fab slot="fixed" vertical="top" horizontal="end">
     <ion-fab-button size="small" color="light" id="open-modal">
       <ion-icon name="options-outline" color="secondary"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
   <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"
     [leafletLayers]="mapMarkers">
   </div>
