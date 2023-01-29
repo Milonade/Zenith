@@ -1,18 +1,12 @@
 <app-header>
-    <!-- Searchbar icon -->
+  <!-- Searchbar icon -->
   <ion-buttons slot="start">
     <ion-button (click)="showSearchBar()">
       <ion-icon *ngIf="!showSearch" name="search"></ion-icon>
       <ion-icon *ngIf="showSearch" name="search"></ion-icon>
     </ion-button>
-    <ion-searchbar 
-      [(ngModel)]="searchTerm"
-      class="searchbar-input"
-      *ngIf="showSearch" 
-      (ionInput)="filterItems($event)"
-      debounce="200" 
-      show-clear-button="focus"
-      placeholder="What are you looking for?">
+    <ion-searchbar [(ngModel)]="searchTerm" class="searchbar-input" *ngIf="showSearch" (ionInput)="filterItems($event)"
+      debounce="200" show-clear-button="focus" placeholder="What are you looking for?">
     </ion-searchbar>
   </ion-buttons>
 </app-header>
@@ -23,20 +17,30 @@
       <ion-icon name="options-outline" color="secondary"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <div 
-    class="map"
-    leaflet [leafletOptions]="mapOptions"
-    (leafletMapReady)="onMapReady($event)"
+  <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"
     [leafletLayers]="mapMarkers">
   </div>
   <app-post-slider></app-post-slider>
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>
+      <ion-text color="tertiary" class="ion-padding-horizontal">
+        <h2>
+          Filter
+        </h2>
+      </ion-text>
       <ion-item>
         <ion-checkbox slot="start" (ionChange)="onClick($event)"></ion-checkbox>
         <ion-label>Only see my own posts</ion-label>
       </ion-item>
-      <ion-button expand="block" (click)="onApplyFilters()">
+      <!-- <ion-item>
+        <ion-datetime-button datetime="datetime "></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item> -->
+      <ion-button expand="block" (click)="onApplyFilters()" class="ion-padding">
         Apply filters
       </ion-button>
     </ng-template>
