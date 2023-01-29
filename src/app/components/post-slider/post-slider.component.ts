@@ -45,6 +45,7 @@ export class PostSliderComponent implements OnInit {
         this.posts = data;
       });
     }
+    this.myPosts = [];
   }
 
 

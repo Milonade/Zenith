@@ -1,12 +1,12 @@
 <ion-modal #modal [isOpen]="true" [initialBreakpoint]="0.1" [breakpoints]="[0.1, 0.9]" [backdropBreakpoint]="1"
   [backdropDismiss]="false" handleBehavior="none">
   <ng-template>
-    <ion-content>
+    <ion-content class="ion-padding">
       <div>
         <ion-button id="mapBtn" (click)="modal.setCurrentBreakpoint(0.1)">Map</ion-button>
         <ion-button color="secondary">
           <a href="/create-post">
-            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+           <h2><ion-icon slot="icon-only" name="add-outline" ></ion-icon></h2>
           </a>
         </ion-button>
         <ion-item>
@@ -14,7 +14,7 @@
           <ion-label>Only see my posts</ion-label>
         </ion-item>
       </div>
-      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+      <app-post class="ion-padding" *ngFor="let post of posts" [post]="post"></app-post>
     </ion-content>
   </ng-template>
 </ion-modal>
