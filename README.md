@@ -16,12 +16,14 @@ Zenith is an app that lets you journal your travels and share them with other us
 
 1. Simply fork or download [the project here](https://github.com/JasmineMolanoco/Zenith)
 
-2. Then you can install dependancies 
+2. Moove to the project file with `cd ./pathToProject`
+
+3. Then you can install dependancies 
 ```bash
   npm install
 ```
 
-3. Now you can run the app (local)
+4. Now you can run the app (local)
 
 ```bash
   ionic serve
@@ -30,15 +32,19 @@ It will open a localhost page on your favorite browser.
 
 ## How does the app work ?
 1. First, an authentication will be required. 
+   
    You are invited to create an account.
 
-2. To use the app at his best, you must **allow your browser to use your geolocation**. From this, you will see the map zoom in the zone where you are at the moment. You may find a post from one friend nearby. :-)
+2. To use the app at his best, you must **allow your browser to use your geolocation**. 
+   
+   From this, you will see the map zoom in the zone where you are at the moment. You may find a post from one friend nearby. :-)
 
 3. You can **create a post**, by taking a picture or choosing one of your library. You can also choose if you want to share it with your friends (public post must be ticked) or leave it on your personal travel's journal (untick public post). 
 
    NB: As we could have taken the photo on a trip to London last week, we left the choice to be able to publish a photo at an earlier date, as well as to choose a different location than the current one.
 
 4. It is possible to **switch views**. There is the main view, with the map, and the modal view below, which shows the publications in chronological order (feed). 
+   
    In addition, if you only want to see your trips, you can check the box in the "feed" modal.
 
 ## Little hacks in case the app crashes...
